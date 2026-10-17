@@ -1,5 +1,5 @@
 /**
- * Your Paymant Gaeway — Safe Package Synchronization Script
+ * Your Paymant Gateway — Safe Package Synchronization Script
  * Synchronizes from the master repo (repo_clone) to the clean distributable package (YOUPI PG PACKAGE).
  * 
  * Rules:
@@ -21,7 +21,7 @@ const TARGET_DIR = process.env.TARGET_PACKAGE_DIR ||
   path.resolve(SOURCE_DIR, '..', 'YOUPI PG PACKAGE');
 
 console.log('============================================================');
-console.log('📦 Your Paymant Gaeway — PACKAGE SYNCHRONIZATION');
+console.log('📦 Your Paymant Gateway — PACKAGE SYNCHRONIZATION');
 console.log('============================================================');
 console.log(`[Source Master] : ${SOURCE_DIR}`);
 console.log(`[Target Package]: ${TARGET_DIR}`);

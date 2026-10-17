@@ -1,8 +1,8 @@
-# Your Paymant Gaeway — Developer Integration Guide
+# Your Paymant Gateway — Developer Integration Guide
 
-Welcome to the official developer integration guide for **Your Paymant Gaeway**.
+Welcome to the official developer integration guide for **Your Paymant Gateway**.
 
-Your Paymant Gaeway provides a **Universal One-Script Integration** that allows any web application to accept UPI payments with zero aggregator fees, sub-second QR rendering, and automated SMS/Gmail observation verification.
+Your Paymant Gateway provides a **Universal One-Script Integration** that allows any web application to accept UPI payments with zero aggregator fees, sub-second QR rendering, and automated SMS/Gmail observation verification.
 
 ---
 

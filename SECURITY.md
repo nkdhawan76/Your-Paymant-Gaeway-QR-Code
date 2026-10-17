@@ -13,7 +13,7 @@ We recommend running the latest release on the `main` branch with Node.js `>= 20
 
 ## Reporting a Vulnerability
 
-Security is a primary concern for payment infrastructure. If you discover a security vulnerability or potential threat in **Your Paymant Gaeway**, please report it responsibly:
+Security is a primary concern for payment infrastructure. If you discover a security vulnerability or potential threat in **Your Paymant Gateway**, please report it responsibly:
 
 1. **GitHub Security Advisories (Preferred)**:
    Navigate to the repository's **Security** tab and click **Report a vulnerability** to privately submit details to the maintainers.

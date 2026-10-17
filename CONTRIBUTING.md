@@ -1,6 +1,6 @@
-# Contributing to Your Paymant Gaeway
+# Contributing to Your Paymant Gateway
 
-Thank you for your interest in contributing to **Your Paymant Gaeway**! As a sovereign, self-hosted UPI payment gateway, we welcome contributions that improve stability, security, observer accuracy, and developer ergonomics.
+Thank you for your interest in contributing to **Your Paymant Gateway**! As a sovereign, self-hosted UPI payment gateway, we welcome contributions that improve stability, security, observer accuracy, and developer ergonomics.
 
 ---
 

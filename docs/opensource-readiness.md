@@ -2,7 +2,7 @@
 
 ## 1. Repository Baseline
 
-- **Project**: Your Paymant Gaeway
+- **Project**: Your Paymant Gateway
 - **Repository URL**: `https://github.com/nkdhawan76/Your-Paymant-Gaeway-QR-Code.git`
 - **Current Branch**: `main`
 - **Runtime Target**: Node.js `>= 20.0.0` (Native ESM)

@@ -35,7 +35,7 @@ const testFiles = [
 ];
 
 console.log('============================================================');
-console.log('🧪 Your Paymant Gaeway — FULL REGRESSION TEST RUNNER');
+console.log('🧪 Your Paymant Gateway — FULL REGRESSION TEST RUNNER');
 console.log(`Running ${testFiles.length} curated test suites...`);
 console.log('============================================================\n');
 

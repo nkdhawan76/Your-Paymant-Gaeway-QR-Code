@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea or improvement for Your Paymant Gaeway
+about: Suggest an idea or improvement for Your Paymant Gateway
 title: '[FEAT] '
 labels: enhancement
 assignees: ''

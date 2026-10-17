@@ -1,6 +1,6 @@
-# Your Paymant Gaeway — Deployment & Installation Guide
+# Your Paymant Gateway — Deployment & Installation Guide
 
-This document describes how to deploy and run the clean distributable **Your Paymant Gaeway** package.
+This document describes how to deploy and run the clean distributable **Your Paymant Gateway** package.
 
 ---
 

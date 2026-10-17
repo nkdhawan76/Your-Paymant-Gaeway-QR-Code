@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a report to help us improve Your Paymant Gaeway
+about: Create a report to help us improve Your Paymant Gateway
 title: '[BUG] '
 labels: bug
 assignees: ''

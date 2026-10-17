@@ -1,13 +1,13 @@
 # AGENTS.md — Integration Guide for AI Coding Agents
 
-> **Audience**: AI Coding Agents & Pair Programmers integrating Your Paymant Gaeway into developer applications.  
+> **Audience**: AI Coding Agents & Pair Programmers integrating Your Paymant Gateway into developer applications.  
 > **Purpose**: Authoritative reference on the payment lifecycle, one-script frontend integration, browser events, and server-to-server webhook verification.
 
 ---
 
 ## 1. High-Level Architecture
 
-Your Paymant Gaeway is a self-hosted, sovereign payment gateway designed for zero-fee UPI and counter payments with automated banking observation (SMS & Gmail parsing).
+Your Paymant Gateway is a self-hosted, sovereign payment gateway designed for zero-fee UPI and counter payments with automated banking observation (SMS & Gmail parsing).
 
 ```text
   [ Merchant Website / App ]

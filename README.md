@@ -1,4 +1,4 @@
-# ⚡ Your Paymant Gaeway
+# ⚡ Your Paymant Gateway
 
 <div align="center">
 
@@ -41,7 +41,7 @@
 
 ## 🎬 Live Product Demos
 
-See **Your Paymant Gaeway** live in action across Desktop and Mobile checkout flows:
+See **Your Paymant Gateway** live in action across Desktop and Mobile checkout flows:
 
 | 🖥️ Desktop Modal Flow | 📱 Mobile Drawer & App Switcher |
 | :---: | :---: |
@@ -246,7 +246,7 @@ npm test
 
 ```text
 ============================================================
-🧪 Your Paymant Gaeway — FULL REGRESSION TEST RUNNER
+🧪 Your Paymant Gateway — FULL REGRESSION TEST RUNNER
 Running 31 curated test suites...
 ============================================================
 [1/31] Testing packages/common/src/__tests__/common.test.js... ✅ PASS (0.22s)

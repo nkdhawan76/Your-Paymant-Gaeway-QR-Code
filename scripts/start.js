@@ -23,7 +23,7 @@ try {
 } catch {}
 
 console.log('====================================================');
-console.log('🚀 Starting Your Paymant Gaeway — Production Gateway');
+console.log('🚀 Starting Your Paymant Gateway — Production Gateway');
 console.log('====================================================');
 
 // 1. Run database migrations & load persisted configuration (Part B3: never overwrite settings)
@@ -44,7 +44,7 @@ if (!domain) {
   console.error('Please configure your Cloudflare Domain in the Merchant Admin panel,');
   console.error('or set CLOUDFLARE_DOMAIN in .env before running `npm start`.');
   console.error('');
-  console.error('Your Paymant Gaeway adheres to authoritative production mode and will NOT');
+  console.error('Your Paymant Gateway adheres to authoritative production mode and will NOT');
   console.error('silently rewrite or fall back to localhost in production.');
   console.error('================================================================\n');
   process.exit(1);
@@ -88,7 +88,7 @@ console.log('[3/3] Starting core production gateway services (Pure API & Android
 await cc.processManager.startAll();
 
 console.log('====================================================');
-console.log('🟢 Your Paymant Gaeway PRODUCTION GATEWAY ONLINE & ACTIVE');
+console.log('🟢 Your Paymant Gateway PRODUCTION GATEWAY ONLINE & ACTIVE');
 console.log('====================================================');
 console.log('AUTHORITATIVE PUBLIC CLOUDFLARE ROUTES:');
 console.log(`• Checkout Portal:      ${runtimeUrls.checkoutUrl}  (-> :7000)`);
