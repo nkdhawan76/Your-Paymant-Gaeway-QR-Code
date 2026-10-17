@@ -1,8 +1,8 @@
 <div align="center">
 
-# ⚡ YOUPI PG V2
+# ⚡ Your Paymant Gaeway
 
-### The Sovereign, Self-Hosted UPI Payment Gateway for Independent Merchants
+### Sovereign • Self-Hosted • Zero-Fee • UPI Payment Gateway
 
 **0% Gateway Fees • Direct-to-Bank Settlement • WhatsApp Pre-Checkout OTP • Bank SMS & Gmail Observers**
 
@@ -39,7 +39,7 @@
 
 ## 🎬 Live Product Demos
 
-See **YOUPI PG V2** live in action across Desktop and Mobile checkout flows:
+See **Your Paymant Gaeway** live in action across Desktop and Mobile checkout flows:
 
 | 🖥️ Desktop Modal Flow | 📱 Mobile Drawer & App Switcher |
 | :---: | :---: |
@@ -228,7 +228,7 @@ npm test
 
 ```text
 ============================================================
-🧪 YOUPI PG V2 — FULL REGRESSION TEST RUNNER
+🧪 Your Paymant Gaeway — FULL REGRESSION TEST RUNNER
 Running 31 curated test suites...
 ============================================================
 [1/31] Testing packages/common/src/__tests__/common.test.js... ✅ PASS (0.22s)

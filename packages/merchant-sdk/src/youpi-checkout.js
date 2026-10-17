@@ -1,5 +1,5 @@
 /**
- * YOUPI PG V2 — Universal One-Script Integration SDK
+ * Your Paymant Gaeway — Universal One-Script Integration SDK
  *
  * Official Distributable Browser Script (youpi.js / youpi-checkout.js)
  * Provides zero-JavaScript button configuration [data-youpi-pay] and programmatic Youpi.pay({...})

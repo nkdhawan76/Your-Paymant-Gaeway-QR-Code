@@ -1,9 +1,9 @@
 openapi: 3.0.3
 info:
-  title: Your Payment Gateway — Public Developer Integration API
+  title: Your Paymant Gaeway — Public Developer Integration API
   version: 2.0.0
   description: |
-    Official public integration API and webhook contract for Your Payment Gateway.
+    Official public integration API and webhook contract for Your Paymant Gaeway.
     Allows merchants to create payment sessions, query verification status, and receive authoritative HMAC-SHA256 signed webhooks.
 
 servers:

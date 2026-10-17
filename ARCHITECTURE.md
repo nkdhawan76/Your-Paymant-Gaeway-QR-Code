@@ -1,6 +1,6 @@
 # ARCHITECTURE.md — Canonical System Architecture & Engineering Blueprint
 
-> **Your Payment Gateway**  
+> **Your Paymant Gaeway**  
 > *Sovereign • Self-Hosted • Zero-Fee • UPI Payment Gateway*  
 > **Architecture Reference:** Production Specification V2  
 > **Runtime Target:** Node.js `>= 20.0.0` (ESM Native) • SQLite WAL • Android Kotlin
