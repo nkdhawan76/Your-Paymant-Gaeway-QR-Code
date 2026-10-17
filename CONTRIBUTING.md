@@ -13,31 +13,39 @@ All contributors and maintainers are expected to abide by our [Code of Conduct](
 ## Development Workflow
 
 ### 1. Prerequisites
+
 - **Node.js**: `>= 20.0.0` (LTS recommended)
 - **npm**: `>= 10.0.0`
 - **Git**
 - Optional: Android Studio for native Android Kotlin Observer testing.
 
 ### 2. Fork and Clone
+
 ```bash
 git clone https://github.com/nkdhawan76/Your-Paymant-Gaeway-QR-Code.git
 cd Your-Paymant-Gaeway-QR-Code
 ```
 
 ### 3. Install Dependencies
+
 ```bash
 npm install
 ```
+
 This configures npm workspaces across `packages/*` and `apps/*`.
 
 ### 4. Setup Environment
+
 Copy the example environment template:
+
 ```bash
 cp .env.example .env
 ```
+
 > **Security Notice**: Never commit `.env` or any file containing live API keys, tokens, or bank credentials.
 
 ### 5. Running Quality Checks Locally
+
 Before submitting a pull request, ensure all local validation commands pass:
 
 ```bash
@@ -59,13 +67,16 @@ npm audit
 ## Branching & Commit Conventions
 
 ### Branch Naming
+
 - Features: `feature/description-of-feature`
 - Fixes: `fix/issue-description`
 - Docs: `docs/what-changed`
 - Refactor: `refactor/scope`
 
 ### Commit Messages
+
 We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
 - `feat: add CRED deep-link intent handling`
 - `fix: resolve race condition in SMS parser timestamp attribution`
 - `docs: update webhook verification examples`

@@ -19,6 +19,7 @@ Every merchant can configure custom branding in the `merchants` table via the Me
 ```
 
 ### CSS Variables Injection
+
 The Checkout Portal and Help Portal dynamically map merchant branding to native CSS custom properties:
 
 ```css

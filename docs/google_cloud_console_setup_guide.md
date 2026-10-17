@@ -7,6 +7,7 @@ This guide provides step-by-step instructions to configure your Google Cloud Con
 ## Architecture Overview
 
 YouPI PG introduces a **2-Level Verification Architecture**:
+
 - **Level 1 Verification**: First incoming credit match detected via **Direct Gmail API** or **Android SMS Gateway** in the 5-minute payment window. Starts a 5-second dual-verification grace window.
 - **Level 2 Verification**: Dual confirmation (`DUAL_VERIFIED_L2`) when **both** Gmail and SMS Gateway confirm the credit within 5 seconds.
 - **Aggressive 1-Second Polling**: Background poller checks both channels every 1 second without requiring an active browser tab or manual click.
@@ -16,6 +17,7 @@ YouPI PG introduces a **2-Level Verification Architecture**:
 ## Required Credentials Summary
 
 To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will need:
+
 1. **Google OAuth Client ID**: e.g., `YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com`
 2. **Google OAuth Client Secret**: e.g., `YOUR_GOOGLE_CLIENT_SECRET`
 3. **Google Refresh Token**: e.g., `YOUR_GOOGLE_REFRESH_TOKEN`
@@ -25,6 +27,7 @@ To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will
 ## Step-by-Step Configuration
 
 ### Step 1: Create a Google Cloud Project
+
 1. Open [Google Cloud Console](https://console.cloud.google.com/).
 2. Log in with the Google Account that receives your bank credit notification emails (or your merchant admin account).
 3. At the top navigation bar, click the project selection dropdown and click **"New Project"**.
@@ -35,6 +38,7 @@ To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will
 ---
 
 ### Step 2: Enable the Gmail API
+
 1. In the Google Cloud Console navigation menu (☰), go to **APIs & Services > Library**.
 2. In the search box, search for: `Gmail API`.
 3. Click on the **Gmail API** tile.
@@ -43,6 +47,7 @@ To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will
 ---
 
 ### Step 3: Configure the OAuth Consent Screen
+
 1. In the sidebar, navigate to **APIs & Services > OAuth consent screen**.
 2. Under **User Type**, select **External** (or **Internal** if using Google Workspace).
 3. Click **Create**.
@@ -65,6 +70,7 @@ To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will
 ---
 
 ### Step 4: Create OAuth 2.0 Client Credentials
+
 1. In the sidebar, navigate to **APIs & Services > Credentials**.
 2. Click **+ Create Credentials** at the top and select **OAuth client ID**.
 3. Under **Application type**, select **Web application**.
@@ -85,6 +91,7 @@ To connect Gmail in the Merchant Admin panel (`http://localhost:5000`), you will
 ---
 
 ### Step 5: Obtain the Persistent Refresh Token using OAuth Playground
+
 Google OAuth access tokens expire after 1 hour, but a **Refresh Token** allows the YouPI PG server to automatically fetch fresh access tokens indefinitely in the background.
 
 1. Open [Google OAuth 2.0 Playground](https://developers.google.com/oauthplayground).
@@ -110,6 +117,7 @@ Google OAuth access tokens expire after 1 hour, but a **Refresh Token** allows t
 ---
 
 ### Step 6: Connect Gmail in YouPI Merchant Panel
+
 1. Open the YouPI Merchant Admin dashboard at `http://localhost:5000`.
 2. Navigate to **📡 Payment Observers (SMS & Gmail)** (Tab 3).
 3. In the **📧 Gmail Direct API** card:
@@ -127,6 +135,7 @@ Google OAuth access tokens expire after 1 hour, but a **Refresh Token** allows t
 ## Automated Polling & Verification Flow
 
 Once configured:
+
 1. When a customer initiates a UPI payment, the session enters the **5-minute payment window**.
 2. YouPI PG launches aggressive **1-second background pollers** across both the **Android SMS Gateway** and the **Gmail Direct API**.
 3. When your bank sends an email credit alert (e.g. from HDFC, SBI, ICICI, Axis, Paytm, or Kotak):

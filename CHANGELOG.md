@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Standardized open-source contribution guidelines (`CONTRIBUTING.md`).
 - Contributor Covenant Code of Conduct (`CODE_OF_CONDUCT.md`).
 - Private vulnerability reporting policy (`SECURITY.md`).
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2026-10-18
 
 ### Added
+
 - **Core Payment Engine**: Sovereign, self-hosted UPI payment gateway engine supporting sub-second dynamic QR generation and deep linking.
 - **Universal One-Script Integration**: `[data-youpi-pay]` declarative button auto-binding and programmatic `Youpi.pay()` modal API.
 - **Dual Observation Mesh**: Bank SMS observer and Gmail notification listener for zero-fee, direct-to-bank P2P payment credit verification.

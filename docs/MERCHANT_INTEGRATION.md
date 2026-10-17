@@ -1,9 +1,11 @@
 # Merchant Integration & Webhook Guide
 
 ## 1. Overview
+
 The YOUPI PG public contract is designed to be minimal and robust. Merchant systems do not need to understand queue mechanics, five-minute timers, 30-second verification windows, or multi-channel observation.
 
 Merchants interact with only **four public outcomes**:
+
 - `SUCCESS`: Payment observed and verified.
 - `FAILED`: 30-second verification window elapsed with no matching observation.
 - `EXPIRED`: 5-minute payment window elapsed without customer initiating verification.
@@ -14,11 +16,13 @@ Merchants interact with only **four public outcomes**:
 ## 2. Using `@youpi/merchant-sdk`
 
 ### Installation
+
 ```bash
 npm install @youpi/merchant-sdk
 ```
 
 ### Initialize Client
+
 ```javascript
 import { YoupiPaymentClient } from '@youpi/merchant-sdk';
 
@@ -30,6 +34,7 @@ const client = new YoupiPaymentClient({
 ```
 
 ### 1. Create a Payment
+
 ```javascript
 // Merchant initiates payment with order details.
 // Customer identity and authentication are fully owned and handled by the Payment Gateway.
@@ -50,6 +55,7 @@ res.redirect(payment.checkoutUrl);
 > **Customer Identity Note**: The merchant developer does **not** collect customer passwords, sessions, or credentials. When the customer reaches the hosted checkout portal, the Payment Gateway securely authenticates the customer (supporting Sign In, Sign Up with 4 profile fields, and 2 remembered accounts) before starting the payment session.
 
 ### 2. Verify Signed Webhook
+
 ```javascript
 app.post('/api/payment/webhook', express.raw({ type: 'application/json' }), (req, res) => {
   const signature = req.headers['x-gateway-signature']; // 'sha256=abcdef...'
@@ -89,9 +95,11 @@ app.post('/api/payment/webhook', express.raw({ type: 'application/json' }), (req
 If integrating from Python, Go, PHP, or Java:
 
 ### 1. Create Payment
+
 - **`POST /api/v1/payments`**
 - **Headers:** `Content-Type: application/json`, `X-Merchant-Id: <UUID>`
 - **Payload:**
+
   ```json
   {
     "orderId": "ORD-12345",
@@ -100,7 +108,9 @@ If integrating from Python, Go, PHP, or Java:
     "returnUrl": "https://store.example.com/complete"
   }
   ```
+
 - **Response:**
+
   ```json
   {
     "paymentId": "...",
@@ -112,5 +122,6 @@ If integrating from Python, Go, PHP, or Java:
   ```
 
 ### 2. Webhook Signature Verification Algorithm
+
 - Compute `expectedSig = HMAC-SHA256(merchant.webhookSecret, rawBodyString)`.
 - Compare against header `X-Gateway-Signature` (strip `sha256=` prefix) using a constant-time comparison function to prevent timing attacks.

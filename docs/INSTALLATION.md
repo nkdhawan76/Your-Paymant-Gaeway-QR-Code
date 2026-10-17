@@ -1,11 +1,13 @@
 # Installation & Host Environment Setup Guide
 
 ## 1. Operating Environment
+
 YOUPI PG is distributed as source code and is engineered to run directly as native host processes on standard Linux (Ubuntu, Debian, RHEL, CentOS) and Windows 10/11 environments.
 
 **Zero Docker Requirement:** Docker, Docker Compose, and external container engines are completely optional and not required. Standard `npm install` works out-of-the-box across all workspace packages.
 
 ### Prerequisites
+
 - **Node.js:** v20.0.0 or higher (v24 LTS recommended)
 - **Database:** Built-in zero-dependency SQLite WAL with automatic schema provisioning (or optional PostgreSQL v14+)
 - **Java/JDK (Optional, for Android APK build):** OpenJDK 17+

@@ -21,12 +21,14 @@ Security is a primary concern for payment infrastructure. If you discover a secu
    Please do not report vulnerabilities through public GitHub issues, discussions, or social channels until an official fix has been published.
 
 ### What to Include in Your Report
+
 - A description of the vulnerability and its potential impact.
 - Clear steps to reproduce (proof of concept, code snippet, or HTTP request trace).
 - Affected components or versions.
 - Any suggested remediations or mitigations.
 
 ### Response Timeline
+
 - **Acknowledgment**: Within 48 hours of initial report.
 - **Assessment**: Maintainers will confirm the validity and severity.
 - **Remediation**: A patched release will be prepared and published alongside a coordinated security advisory.

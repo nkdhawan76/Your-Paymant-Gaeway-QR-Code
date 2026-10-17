@@ -9,26 +9,26 @@
 <br/>
 
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20LTS-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
-[![Zero Aggregator Fees](https://img.shields.io/badge/Fees-0%25%20Forever-10b981?style=for-the-badge&logo=cashapp&logoColor=white)](#-the-problem-vs-the-youpi-solution)
-[![Direct Settlement](https://img.shields.io/badge/Settlement-Instant%20P2P%20Bank-3b82f6?style=for-the-badge&logo=buffer&logoColor=white)](#-architecture-at-a-glance)
-[![WhatsApp Berry Auth](https://img.shields.io/badge/Auth-WhatsApp%20OTP-25d366?style=for-the-badge&logo=whatsapp&logoColor=white)](#-whatsapp-pre-checkout-authentication)
-[![SQLite WAL](https://img.shields.io/badge/Database-SQLite%20Native%20WAL-003b57?style=for-the-badge&logo=sqlite&logoColor=white)](#-persistence--zero-config-provisioning)
-[![Native Android Observer](https://img.shields.io/badge/Android-Kotlin%20Observer%20APK-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#-tri-channel-observation-mesh)
-[![Regression Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing%20(100%25)-success?style=for-the-badge&logo=vitest&logoColor=white)](#-verification--quality-assurance-suite)
-[![White Label Ready](https://img.shields.io/badge/Branding-100%25%20White--Label-f59e0b?style=for-the-badge&logo=target&logoColor=white)](#-white-label-branding--customization)
+[![Zero Aggregator Fees](https://img.shields.io/badge/Fees-0%25%20Forever-10b981?style=for-the-badge&logo=cashapp&logoColor=white)](#the-problem-vs-the-youpi-solution)
+[![Direct Settlement](https://img.shields.io/badge/Settlement-Instant%20P2P%20Bank-3b82f6?style=for-the-badge&logo=buffer&logoColor=white)](#architecture-at-a-glance)
+[![WhatsApp Berry Auth](https://img.shields.io/badge/Auth-WhatsApp%20OTP-25d366?style=for-the-badge&logo=whatsapp&logoColor=white)](#whatsapp-pre-checkout-authentication)
+[![SQLite WAL](https://img.shields.io/badge/Database-SQLite%20Native%20WAL-003b57?style=for-the-badge&logo=sqlite&logoColor=white)](#persistence--zero-config-provisioning)
+[![Native Android Observer](https://img.shields.io/badge/Android-Kotlin%20Observer%20APK-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#tri-channel-observation-mesh)
+[![Regression Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing%20(100%25)-success?style=for-the-badge&logo=vitest&logoColor=white)](#verification--quality-assurance-suite)
+[![White Label Ready](https://img.shields.io/badge/Branding-100%25%20White--Label-f59e0b?style=for-the-badge&logo=target&logoColor=white)](#white-label-branding--customization)
 
 <br/>
 
 <p align="center">
-  <a href="#-live-product-demos">Live Demos</a> •
-  <a href="#-the-problem-vs-the-youpi-solution">Why YOUPI?</a> •
-  <a href="#-architecture-at-a-glance">Architecture</a> •
-  <a href="#-key-features--superpowers">Superpowers</a> •
-  <a href="#-quickstart-in-60-seconds">Quickstart</a> •
-  <a href="#-universal-merchant-integration">Merchant Integration</a> •
-  <a href="#-tri-channel-observation-mesh">Banking Observers</a> •
-  <a href="#-port-topology">Port Topology</a> •
-  <a href="#-documentation-hub">Docs</a>
+  <a href="#live-product-demos">Live Demos</a> •
+  <a href="#the-problem-vs-the-youpi-solution">Why YOUPI?</a> •
+  <a href="#architecture-at-a-glance">Architecture</a> •
+  <a href="#key-features--superpowers">Superpowers</a> •
+  <a href="#quickstart-in-60-seconds">Quickstart</a> •
+  <a href="#universal-merchant-integration">Merchant Integration</a> •
+  <a href="#tri-channel-observation-mesh">Banking Observers</a> •
+  <a href="#port-topology">Port Topology</a> •
+  <a href="#documentation-hub">Docs</a>
 </p>
 
 ---
@@ -36,6 +36,8 @@
 </div>
 
 <br/>
+
+<a id="live-product-demos"></a>
 
 ## 🎬 Live Product Demos
 
@@ -53,6 +55,8 @@ See **Your Paymant Gaeway** live in action across Desktop and Mobile checkout fl
 <br/>
 
 ---
+
+<a id="the-problem-vs-the-youpi-solution"></a>
 
 ## 💡 Stop Paying 2–3% + 18% GST to Payment Aggregators
 
@@ -73,6 +77,8 @@ Traditional payment gateways (Razorpay, Cashfree, PayU, Stripe) lock your revenu
 <br/>
 
 ---
+
+<a id="architecture-at-a-glance"></a>
 
 ## 🏗️ Architecture at a Glance
 
@@ -123,11 +129,15 @@ flowchart LR
 
 ---
 
+<a id="key-features--superpowers"></a>
+
 ## 🚀 Key Features & Superpowers
 
 ### 1. ⚡ 0% Transaction Fees Forever
 
 Every rupee paid goes straight from your customer's bank account to your bank account via standard NPCI UPI rails. No intermediaries hold your money.
+
+<a id="whatsapp-pre-checkout-authentication"></a>
 
 ### 2. 💬 WhatsApp Pre-Checkout Authentication (Berry Protocol)
 
@@ -161,6 +171,8 @@ Dual backup observation channels:
 - **Online Selling Mode:** UPI Vector QR + Cash on Delivery (COD) with customer pre-purchase verification and decoupled address lifecycle.
 - **Offline Store Counter Mode:** Designed for physical retail stores. Supports UPI QR, Cash at Till (`CASH_COUNTER`), and Card at POS Terminal (`CARD_COUNTER`) with an interactive real-time cashier till dock and instant SSE customer approval.
 
+<a id="white-label-branding--customization"></a>
+
 ### 7. 🎨 100% White-Label Customizer
 
 Rebrand the checkout portal completely through the Merchant Admin Panel:
@@ -184,6 +196,8 @@ Never leave customers hanging with blank screens or 404 errors:
 
 ---
 
+<a id="quickstart-in-60-seconds"></a>
+
 ## ⚡ Quickstart in 60 Seconds
 
 ### Prerequisites
@@ -199,6 +213,8 @@ cp .env.example .env
 ```
 
 *(The default `.env` is pre-configured for localhost out of the box).*
+
+<a id="persistence--zero-config-provisioning"></a>
 
 ### 3. Zero-Config Launch (Auto-Initialized SQLite)
 
@@ -217,6 +233,8 @@ That's it! Your entire gateway cluster will spin up:
 - 🛒 **YOUPI Showcase Demo Store:** [`http://localhost:5000`](http://localhost:5000)
 - ⚡ **Payment REST API:** [`http://localhost:6100`](http://localhost:6100)
 - 💳 **Customer Checkout Portal:** [`http://localhost:7000`](http://localhost:7000)
+
+<a id="verification--quality-assurance-suite"></a>
 
 ### 4. Run the Full Regression Test Suite
 
@@ -242,6 +260,8 @@ Running 31 curated test suites...
 <br/>
 
 ---
+
+<a id="universal-merchant-integration"></a>
 
 ## 📦 Universal Merchant Integration
 
@@ -438,6 +458,8 @@ func youpiWebhookHandler(w http.ResponseWriter, r *http.Request) {
 
 ---
 
+<a id="tri-channel-observation-mesh"></a>
+
 ## 🔭 Tri-Channel Observation Mesh
 
 YOUPI PG confirms payments without expensive commercial banking APIs using a triple-layer observation pipeline:
@@ -484,6 +506,8 @@ YOUPI PG confirms payments without expensive commercial banking APIs using a tri
 
 ---
 
+<a id="port-topology"></a>
+
 ## 🌐 Port Topology & Microservices Map
 
 | Service | Port | Directory | Entrypoint | Responsibility |
@@ -512,6 +536,8 @@ YOUPI PG confirms payments without expensive commercial banking APIs using a tri
 <br/>
 
 ---
+
+<a id="documentation-hub"></a>
 
 ## 📚 Documentation Hub
 

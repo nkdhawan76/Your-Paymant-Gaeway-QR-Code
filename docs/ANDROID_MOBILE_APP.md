@@ -5,6 +5,7 @@
 The **YOUPI Android Payment Observer** is a native Android Kotlin application designed to run on a dedicated merchant phone receiving UPI incoming payments via banking and UPI applications (PhonePe, Google Pay, Paytm, BHIM, HDFC, ICICI, SBI, Axis, etc.).
 
 ### Critical Architectural Boundaries
+
 1. **The Mobile App Is An Observer, NOT a Decision-Maker:**
    - The app's job is strictly:
      $$\text{Notification Arrived} \to \text{Extract Amount \& UTR} \to \text{Sign Payload} \to \text{Dispatch to Backend}$$
@@ -21,7 +22,7 @@ The **YOUPI Android Payment Observer** is a native Android Kotlin application de
 
 ## 2. Directory Structure & Source Code Layout
 
-```
+```text
 apps/android-observer-app/
 ├── build.gradle.kts                 # Root Gradle build script
 ├── settings.gradle.kts              # Gradle project settings
@@ -50,10 +51,12 @@ apps/android-observer-app/
 ## 3. How to Build the APK
 
 ### Prerequisites
+
 - JDK 17+ (e.g. OpenJDK 17)
 - Android SDK (API Level 34)
 
 ### Building via Gradle CLI
+
 From the `apps/android-observer-app` directory:
 
 ```bash
@@ -72,26 +75,32 @@ From the `apps/android-observer-app` directory:
 ## 4. Installation & Device Setup
 
 ### Step 1: Install APK onto Android Device
+
 Connect your Android phone via USB with USB Debugging enabled:
 
 ```bash
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
+
 *(Or transfer `app-debug.apk` directly to your phone via USB/WhatsApp/Drive and install).*
 
 ### Step 2: Grant Notification Listener Permission
+
 1. Open the app **YOUPI Observer**.
 2. Tap **Grant Notification Listener Access**.
 3. Android System Settings will open. Toggle **YOUPI Observer** to **Allowed**.
 4. Confirm the system warning dialog.
 
 ### Step 3: Exempt from Battery Optimization (Crucial for 24/7 Uptime)
+
 To ensure Android OEMs (Xiaomi MIUI, Samsung OneUI, OnePlus OxygenOS, Realme/Oppo ColorOS) do not put the observer to sleep:
+
 1. Open phone **Settings** > **Apps** > **YOUPI Observer**.
 2. Tap **Battery** > Select **Unrestricted** (or "Don't optimize").
 3. Enable **Autostart** / **Allow background activity**.
 
 ### Step 4: Pair with Gateway
+
 1. Open your Merchant Admin (`http://localhost:6001`).
 2. Go to **Observers & Pairing** tab -> Click **+ Pair Android Device**.
 3. In the mobile app, enter the Gateway URL (e.g. `http://192.168.1.50:6100`) and the Enrollment Token.
@@ -128,6 +137,7 @@ node apps/android-observer-app/simulate-notification.js
 ```
 
 This simulator:
+
 1. Pairs with your local gateway API.
 2. Emits a liveness heartbeat.
 3. Transmits an authentic signed PhonePe notification observation.

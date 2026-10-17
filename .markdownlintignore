@@ -1,0 +1,6 @@
+LICENSE
+node_modules/
+dist/
+build/
+data/
+.turbo/
