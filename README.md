@@ -541,10 +541,8 @@ Distributed under commercial and sovereign licensing for independent merchant de
 
 <div align="center">
 
-### Built for Financial Sovereignty in India 🇮🇳
+### Sovereign UPI Payment Gateway for Merchants 🇮🇳
 
-**Take back control of your payments. Zero middleman fees. Direct settlement.**
-
-⭐ **Star this repository if you believe in open, zero-fee payment infrastructure!**
+**Take control of your transactions with instant direct-to-bank settlements.**
 
 </div>
