@@ -6,7 +6,7 @@ if (!process.env.YOUPI_MODE) process.env.YOUPI_MODE = 'localhost';
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development';
 
 console.log('====================================================');
-console.log('🚀 Starting YOUPI PG (Development / Localhost Mode)');
+console.log('🚀 Starting Your Paymant Gateway (Development / Localhost Mode)');
 console.log('====================================================');
 
 // 1. Run database migrations & seeds
