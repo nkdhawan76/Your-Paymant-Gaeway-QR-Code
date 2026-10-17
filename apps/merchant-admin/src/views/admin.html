@@ -4,70 +4,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merchant Portal & Control Hub — YOUPI PG</title>
+  <title>Merchant Operations &amp; Control Hub — Your Paymant Gateway</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root,
     [data-theme="light"] {
       --theme: light;
-      --bg: #f8fafc;
-      --bg-header: #ffffff;
+      --bg: #f5f8fc;
+      --bg-header: rgba(255, 255, 255, 0.95);
       --bg-nav: #ffffff;
-      --bg-subnav: #f1f5f9;
+      --bg-subnav: #ffffff;
       --bg-card: #ffffff;
-      --bg-surface: #f8fafc;
+      --bg-surface: #f5f8fc;
       --bg-box: #ffffff;
-      --bg-elevated: #f1f5f9;
+      --bg-elevated: #ffffff;
       --bg-slot: #ffffff;
       --bg-table-th: #f8fafc;
       --bg-input: #ffffff;
 
       --border: #e2e8f0;
       --border-focus: #2563eb;
-      --border-subtle: #edf2f7;
+      --border-subtle: #f1f5f9;
       --border-hover: #cbd5e1;
 
       --text: #0f172a;
-      --text-muted: #64748b;
+      --text-muted: #5b6b84;
       --text-dim: #94a3b8;
       --text-heading: #0f172a;
 
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
-      --primary-glow: rgba(37, 99, 235, 0.2);
-      --primary-light: rgba(37, 99, 235, 0.08);
+      --primary-glow: rgba(37, 99, 235, 0.15);
+      --primary-light: rgba(37, 99, 235, 0.05);
 
       --success: #059669;
-      --success-glow: rgba(5, 150, 105, 0.2);
+      --success-light: #ecfdf5;
+      --success-glow: rgba(5, 150, 105, 0.15);
       --danger: #dc2626;
-      --danger-glow: rgba(220, 38, 38, 0.2);
+      --danger-light: #fff1f2;
+      --danger-glow: rgba(220, 38, 38, 0.15);
       --warning: #d97706;
-      --warning-glow: rgba(217, 119, 6, 0.2);
+      --warning-light: #fffbeb;
+      --warning-glow: rgba(217, 119, 6, 0.15);
       --info: #0284c7;
-      --info-glow: rgba(2, 132, 199, 0.2);
+      --info-light: #f0f9ff;
+      --info-glow: rgba(2, 132, 199, 0.15);
 
-      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
-      --card-shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+      --card-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.07), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
 
       --badge-success-bg: #ecfdf5;
       --badge-success-text: #065f46;
       --badge-success-border: #a7f3d0;
-      --badge-danger-bg: #fef2f2;
-      --badge-danger-text: #991b1b;
-      --badge-danger-border: #fecaca;
+      --badge-danger-bg: #fff1f2;
+      --badge-danger-text: #9f1239;
+      --badge-danger-border: #fecdd3;
       --badge-warning-bg: #fffbeb;
       --badge-warning-text: #92400e;
       --badge-warning-border: #fde68a;
       --badge-info-bg: #eff6ff;
       --badge-info-text: #1e40af;
       --badge-info-border: #bfdbfe;
-      --badge-neutral-bg: #f1f5f9;
+      --badge-neutral-bg: #f8fafc;
       --badge-neutral-text: #475569;
       --badge-neutral-border: #e2e8f0;
 
       --btn-sec-bg: #ffffff;
       --btn-sec-text: #334155;
-      --btn-sec-border: #cbd5e1;
-      --btn-sec-hover-bg: #f1f5f9;
+      --btn-sec-border: #e2e8f0;
+      --btn-sec-hover-bg: #f8fafc;
       --btn-sec-hover-text: #0f172a;
 
       --tr-hover: #f8fafc;
@@ -76,18 +83,18 @@
       --kpi-vol-color: #059669;
       --kpi-success-color: #2563eb;
       --kpi-queue-color: #d97706;
-      --kpi-pending-color: #dc2626;
+      --kpi-pending-color: #e11d48;
 
-      --header-bg: #ffffff;
+      --header-bg: rgba(255, 255, 255, 0.95);
       --header-border: #e2e8f0;
       --header-title: #0f172a;
       --nav-bg: #ffffff;
       --nav-border: #e2e8f0;
-      --subnav-bg: #f8fafc;
+      --subnav-bg: #ffffff;
       --subnav-border: #e2e8f0;
-      --pill-bg: #ffffff;
+      --pill-bg: #f8fafc;
       --pill-text: #475569;
-      --pill-border: #cbd5e1;
+      --pill-border: #e2e8f0;
     }
 
     [data-theme="dark"] {
@@ -177,7 +184,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     body,
@@ -196,7 +203,7 @@
     .settings-group-box,
     .slot-card,
     .theme-mode-pill {
-      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body {
@@ -206,76 +213,103 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* Top Sticky Header */
     header {
       background: var(--header-bg);
       border-bottom: 1px solid var(--header-border);
-      padding: 0.85rem 1.75rem;
+      padding: 0.75rem 1.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 0.9rem;
     }
 
-    .brand-title {
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: var(--header-title);
+    .brand-logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border: 1px solid #bfdbfe;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      letter-spacing: -0.02em;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(37, 99, 235, 0.12);
+      flex-shrink: 0;
+    }
+
+    .brand-name-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--header-title);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle-text {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .brand-badge {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 0.2rem 0.55rem;
+      padding: 0.2rem 0.6rem;
       border-radius: 9999px;
-      background: var(--badge-info-bg);
-      color: var(--badge-info-text);
-      border: 1px solid var(--badge-info-border);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      background: var(--badge-neutral-bg);
+      color: var(--badge-neutral-text);
+      border: 1px solid var(--badge-neutral-border);
+      letter-spacing: 0.03em;
+      margin-left: 0.25rem;
     }
 
     .header-quick-stats {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
-    /* Real Light / Dark Mode Toggle Pill */
+    /* Modern Theme Mode Pill */
     .theme-mode-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.35rem 0.75rem;
+      gap: 0.45rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.76rem;
+      font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--border);
-      background: var(--bg-surface);
+      background: var(--bg-card);
       color: var(--text);
       user-select: none;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
     }
 
     .theme-mode-pill:hover {
       border-color: var(--border-hover);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
       transform: translateY(-1px);
     }
 
@@ -284,20 +318,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.35rem 0.75rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.76rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
       border: 1px solid var(--border);
       background: var(--bg-card);
       color: var(--text);
       user-select: none;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
     }
 
     .store-switch-badge:hover {
-      filter: brightness(1.08);
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
     }
 
     .store-switch-badge.is-online {
@@ -316,45 +352,44 @@
     .live-pulse-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       background: var(--badge-success-bg);
       border: 1px solid var(--badge-success-border);
       color: var(--badge-success-text);
-      padding: 0.3rem 0.65rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 9999px;
-      font-size: 0.73rem;
+      font-size: 0.74rem;
       font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
     .pulse-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 8px #10b981;
-      animation: pulseAnim 2s infinite ease-in-out;
+      background: #059669;
+      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.6);
+      animation: pulseRipple 2s infinite cubic-bezier(0.66, 0, 0, 1);
     }
 
-    @keyframes pulseAnim {
-
-      0%,
+    @keyframes pulseRipple {
+      0% {
+        box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.6);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(5, 150, 105, 0);
+      }
       100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.4;
-        transform: scale(0.85);
+        box-shadow: 0 0 0 0 rgba(5, 150, 105, 0);
       }
     }
 
-    /* Primary Navigation Bar (3 Sections) */
+    /* Primary Navigation Bar */
     .main-nav-bar {
       background: var(--nav-bg);
       border-bottom: 1px solid var(--nav-border);
       display: flex;
-      gap: 0.5rem;
+      gap: 0.25rem;
       padding: 0 1.75rem;
       overflow-x: auto;
       position: sticky;
@@ -363,36 +398,39 @@
     }
 
     .main-nav-btn {
-      padding: 0.95rem 1.4rem;
+      padding: 0.95rem 1.25rem;
       cursor: pointer;
       border: none;
       background: transparent;
-      font-weight: 800;
+      font-weight: 600;
       color: var(--text-muted);
-      border-bottom: 3px solid transparent;
+      border-bottom: 2px solid transparent;
       white-space: nowrap;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      font-size: 0.92rem;
+      transition: all 0.15s ease;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
+      position: relative;
     }
 
     .main-nav-btn:hover {
       color: var(--text);
-      background: var(--primary-light);
+      background: var(--bg-surface);
     }
 
     .main-nav-btn.active {
       color: var(--primary);
+      font-weight: 700;
       border-bottom-color: var(--primary);
-      background: var(--primary-light);
+      background: transparent;
     }
 
-    [data-theme="dark"] .main-nav-btn.active {
-      color: #38bdf8;
-      border-bottom-color: #38bdf8;
-      background: rgba(56, 189, 248, 0.08);
+    .nav-icon {
+      width: 17px;
+      height: 17px;
+      stroke-width: 2px;
+      flex-shrink: 0;
     }
 
     /* Secondary Sub-Nav Pills */
@@ -400,21 +438,21 @@
       background: var(--subnav-bg);
       border-bottom: 1px solid var(--subnav-border);
       display: flex;
-      gap: 0.5rem;
+      gap: 0.4rem;
       padding: 0.65rem 1.75rem;
       overflow-x: auto;
     }
 
     .sub-nav-pill {
-      padding: 0.45rem 1rem;
+      padding: 0.4rem 0.95rem;
       cursor: pointer;
-      border: 1px solid var(--pill-border);
+      border: 1px solid var(--border);
       background: var(--pill-bg);
       border-radius: 9999px;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--pill-text);
       white-space: nowrap;
-      transition: all 0.18s;
+      transition: all 0.15s ease;
       font-size: 0.8rem;
       display: flex;
       align-items: center;
@@ -424,13 +462,21 @@
     .sub-nav-pill:hover {
       color: var(--text);
       border-color: var(--border-hover);
+      background: var(--bg-card);
     }
 
     .sub-nav-pill.active {
-      color: #ffffff;
-      background: var(--primary);
-      border-color: var(--primary);
-      box-shadow: 0 2px 10px var(--primary-glow);
+      color: var(--primary);
+      background: var(--primary-light);
+      border-color: rgba(37, 99, 235, 0.35);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08);
+    }
+
+    [data-theme="dark"] .sub-nav-pill.active {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.4);
     }
 
     main {
@@ -444,20 +490,23 @@
     /* KPI Summary Row */
     .kpi-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.1rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.15rem;
+      margin-bottom: 1.25rem;
     }
 
     .kpi-box {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 0.85rem;
-      padding: 1.25rem;
+      border-radius: 12px;
+      padding: 1.35rem;
       position: relative;
       overflow: hidden;
       box-shadow: var(--card-shadow);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .kpi-box:hover {
@@ -466,19 +515,80 @@
       border-color: var(--border-hover);
     }
 
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+
     .kpi-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
+    }
+
+    .kpi-icon-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .kpi-value {
-      font-size: 1.95rem;
-      font-weight: 900;
-      margin-top: 0.35rem;
-      letter-spacing: -0.02em;
+      font-size: 2.05rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    }
+
+    .kpi-footer {
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .kpi-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .kpi-tag-success {
+      background: var(--badge-success-bg);
+      color: var(--badge-success-text);
+      border: 1px solid var(--badge-success-border);
+    }
+
+    .kpi-tag-blue {
+      background: var(--badge-info-bg);
+      color: var(--badge-info-text);
+      border: 1px solid var(--badge-info-border);
+    }
+
+    .kpi-tag-amber {
+      background: var(--badge-warning-bg);
+      color: var(--badge-warning-text);
+      border: 1px solid var(--badge-warning-border);
+    }
+
+    .kpi-tag-rose {
+      background: var(--badge-danger-bg);
+      color: var(--badge-danger-text);
+      border: 1px solid var(--badge-danger-border);
     }
 
     /* Cards */
@@ -772,21 +882,137 @@
     }
 
     .slot-card {
-      border: 2px dashed var(--border);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      background: var(--bg-slot);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      background: var(--bg-card);
       text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+    }
+
+    .slot-card.is-idle {
+      background: var(--bg-surface);
+      border-style: dashed;
+      border-color: #cbd5e1;
     }
 
     .slot-card.busy-active {
-      border-color: var(--primary);
-      background: var(--primary-light);
+      border: 1.5px solid #2563eb;
+      background: #f0f7ff;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+    }
+
+    [data-theme="dark"] .slot-card.busy-active {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
     }
 
     .slot-card.busy-proc {
-      border-color: var(--warning);
-      background: var(--warning-bg);
+      border: 1.5px solid #d97706;
+      background: #fffdf5;
+      box-shadow: 0 4px 20px rgba(217, 119, 6, 0.12);
+    }
+
+    [data-theme="dark"] .slot-card.busy-proc {
+      border-color: #fbbf24;
+      background: rgba(245, 158, 11, 0.08);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+    }
+
+    .slot-active-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 0;
+    }
+
+    .slot-amount-display {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .slot-order-display {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      background: rgba(15, 23, 42, 0.04);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .slot-timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+    }
+
+    .slot-timer-badge.proc-timer {
+      background: #fffbeb;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+
+    .slot-idle-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1.25rem 0.5rem;
+      flex: 1;
+    }
+
+    .slot-idle-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    [data-theme="dark"] .slot-idle-icon {
+      background: #0f172a;
+      border-color: #1e293b;
+      color: #64748b;
+    }
+
+    .slot-idle-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .slot-idle-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      max-width: 290px;
+      line-height: 1.45;
     }
 
     /* Modals & Popups */
@@ -979,40 +1205,47 @@
   <!-- TOP HEADER -->
   <header>
     <div class="brand-group">
-      <div class="brand-title">
-        <span>🛡️ YOUPI PG</span>
+      <div class="brand-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#2563eb" stroke="#1d4ed8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <span class="brand-badge">Merchant &amp; Supervisor Hub</span>
+      <div class="brand-name-group">
+        <span class="brand-title-text">Your Paymant Gateway</span>
+        <span class="brand-subtitle-text">Merchant Operating System</span>
+      </div>
+      <span class="brand-badge">v2.4 Sovereign</span>
     </div>
 
     <div class="header-quick-stats">
       <!-- Real Light / Dark Mode Toggle Pill -->
       <div class="theme-mode-pill" id="headerThemeBadge" onclick="toggleThemeManual()"
-        title="Auto-switches to Dark Mode in Developer Hub and Bright White Mode in Operations &amp; Store Settings. Click to toggle manually anytime.">
-        <span id="headerThemeIcon">☀️</span>
-        <span id="headerThemeText">Bright White</span>
+        title="Toggle between Ultra-Clean Minimalist Light Mode and Dark Mode.">
+        <span id="headerThemeIcon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </span>
+        <span id="headerThemeText">Light Mode</span>
       </div>
 
       <!-- YOUPI Store Port 5000 Switch Badge -->
       <div class="store-switch-badge is-offline" id="headerStoreBadge" onclick="toggleYoupiStore()"
-        title="Click to 1-Click Enable/Disable YOUPI Showcase Store on Port 5000">
-        <span id="headerStoreDot">●</span>
+        title="Click to 1-Click Enable/Disable Store on Port 5000">
+        <span id="headerStoreDot" style="font-size:0.6rem;">●</span>
         <span id="headerStoreText">Store (5000): Checking...</span>
       </div>
 
       <!-- Active VPA Display -->
-      <span class="badge badge-info" id="accountVpaDisplay" style="cursor:pointer;"
-        onclick="switchSection('storeSettings', 'subTabVpa')">
+      <span class="badge badge-neutral" id="accountVpaDisplay" style="cursor:pointer; font-weight:600; padding: 0.35rem 0.8rem; border-radius:9999px; font-size:0.76rem;"
+        onclick="switchSection('storeSettings', 'subTabVpa')" title="Click to manage receiving VPAs">
         VPA: Loading...
       </span>
 
       <!-- Environment Mode -->
       <div
-        style="display:flex; align-items:center; gap:0.4rem; background:var(--bg-card); padding:0.3rem 0.75rem; border-radius:9999px; border:1px solid var(--border); cursor:pointer;"
+        style="display:flex; align-items:center; gap:0.35rem; background:var(--bg-card); padding:0.35rem 0.8rem; border-radius:9999px; border:1px solid var(--border); cursor:pointer;"
         onclick="switchSection('developerHub', 'subViewDevCloudflare')">
-        <span style="font-size:0.72rem; color:var(--text-muted); font-weight:700;">ENV:</span>
-        <span class="badge badge-info" id="headerEnvBadge" style="font-size:0.72rem; padding:0.15rem 0.5rem;">💻
-          LOCALHOST</span>
+        <span style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">ENV</span>
+        <span class="badge badge-info" id="headerEnvBadge" style="font-size:0.7rem; padding:0.12rem 0.45rem; font-weight:700;">LOCALHOST</span>
       </div>
 
       <!-- Live Polling Indicator -->
@@ -1023,22 +1256,22 @@
     </div>
   </header>
 
-  <!-- MAIN NAVIGATION BAR: 3 HIGH-LEVEL SECTIONS -->
+  <!-- MAIN NAVIGATION BAR: 4 SECTIONS -->
   <nav class="main-nav-bar">
     <button class="main-nav-btn active" id="mainNavOperations" onclick="switchSection('operations')">
-      <span>🏪</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
       <span>Daily Merchant Operations</span>
     </button>
     <button class="main-nav-btn" id="mainNavStoreSettings" onclick="switchSection('storeSettings')">
-      <span>⚙️</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
       <span>Store Settings</span>
     </button>
     <button class="main-nav-btn" id="mainNavDeveloperHub" onclick="switchSection('developerHub')">
-      <span>🛠️</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
       <span>Developer &amp; Infrastructure Hub</span>
     </button>
     <button class="main-nav-btn" id="mainNavSecurity" onclick="switchSection('security')">
-      <span>🛡️</span>
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
       <span>Security</span>
     </button>
   </nav>
@@ -1057,33 +1290,96 @@
 
       <!-- KPI Summary Cards -->
       <div class="kpi-row">
+        <!-- 1. Today's Volume -->
         <div class="kpi-box">
-          <div class="kpi-title">Today's Volume</div>
+          <div class="kpi-header">
+            <span class="kpi-title">Today's Volume</span>
+            <div class="kpi-icon-badge" style="background:#ecfdf5; color:#059669;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+          </div>
           <div class="kpi-value" id="kpiVol" style="color:var(--kpi-vol-color);">₹0.00</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-success">● Direct Bank Settlement</span>
+            <span>0% Fee</span>
+          </div>
         </div>
+
+        <!-- 2. Successful Payments -->
         <div class="kpi-box">
-          <div class="kpi-title">Successful Payments</div>
+          <div class="kpi-header">
+            <span class="kpi-title">Successful Payments</span>
+            <div class="kpi-icon-badge" style="background:#eff6ff; color:#2563eb;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+          </div>
           <div class="kpi-value" id="kpiSuccessCount" style="color:var(--kpi-success-color);">0</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-blue">● Real-Time Verified</span>
+          </div>
         </div>
+
+        <!-- 3. In Waiting Queue -->
         <div class="kpi-box">
-          <div class="kpi-title">In Waiting Queue</div>
+          <div class="kpi-header">
+            <span class="kpi-title">In Waiting Queue</span>
+            <div class="kpi-icon-badge" style="background:#fffbeb; color:#d97706;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+          </div>
           <div class="kpi-value" id="kpiQueueCount" style="color:var(--kpi-queue-color);">0</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-amber">Deterministic FIFO</span>
+          </div>
         </div>
+
+        <!-- 4. Pending Counter Payments -->
         <div class="kpi-box">
-          <div class="kpi-title">Pending Counter Payments</div>
+          <div class="kpi-header">
+            <span class="kpi-title">Pending Counter Payments</span>
+            <div class="kpi-icon-badge" style="background:#fff1f2; color:#e11d48;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            </div>
+          </div>
           <div class="kpi-value" id="kpiPendingCounterCount" style="color:var(--kpi-pending-color);">0</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-rose">POS Cashier Till</span>
+          </div>
         </div>
       </div>
 
       <!-- Verification Standards Metric Row (2-Layer Engine: SMS + Gmail) -->
-      <div class="kpi-row" style="margin-top:-0.5rem; margin-bottom:1.5rem;">
+      <div class="kpi-row" style="margin-top:-0.25rem; margin-bottom:1.5rem;">
         <div class="kpi-box">
-          <div class="kpi-title">Single Verified (1 Source)</div>
-          <div class="kpi-value" id="kpiSingleVerify" style="color:var(--info); font-size:1.5rem;">0</div>
+          <div class="kpi-header">
+            <div>
+              <span class="kpi-title">Single Verified (1 Source)</span>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Cellular SMS or Gmail notification parsed</div>
+            </div>
+            <div class="kpi-icon-badge" style="background:#f0f9ff; color:#0284c7;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiSingleVerify" style="color:var(--info); font-size:1.75rem;">0</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-blue">Standard NPCI Settlement</span>
+          </div>
         </div>
+
         <div class="kpi-box">
-          <div class="kpi-title">Dual Verified (2 Sources: SMS + Gmail)</div>
-          <div class="kpi-value" id="kpiDualVerify" style="color:var(--success); font-size:1.5rem;">0</div>
+          <div class="kpi-header">
+            <div>
+              <span class="kpi-title">Dual Verified (2 Sources: SMS + Gmail)</span>
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">Corroborated across two independent channels</div>
+            </div>
+            <div class="kpi-icon-badge" style="background:#ecfdf5; color:#059669;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpiDualVerify" style="color:var(--success); font-size:1.75rem;">0</div>
+          <div class="kpi-footer">
+            <span class="kpi-tag kpi-tag-success">Zero Mismatch Guarantee</span>
+          </div>
         </div>
       </div>
 
@@ -1092,42 +1388,71 @@
         <div class="card">
           <div class="card-header">
             <div>
-              <div class="card-heading">🔴 Real-Time Receiving Account Slot Ownership (UPI Invariant)</div>
-              <div class="card-subtext">Guarantees zero payment collision by rotating dynamic slots per receiving UPI
-                VPA.</div>
+              <div class="card-heading">
+                <span class="pulse-dot" style="margin-right:0.25rem;"></span>
+                <span>Real-Time Receiving Account Slot Ownership (UPI Invariant)</span>
+                <span class="badge badge-neutral" style="font-size:0.68rem; font-weight:700; margin-left:0.35rem;">FIFO ARBITER</span>
+              </div>
+              <div class="card-subtext">Guarantees zero payment collision by rotating dynamic single-use slots per receiving UPI VPA.</div>
             </div>
-            <div style="display:flex; gap:0.5rem;">
-              <button class="btn btn-secondary" onclick="fetchLiveData()">Force Refresh</button>
-              <button class="btn btn-danger" onclick="promptClearAllQueue()">Clear Waiting Queue</button>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <button class="btn btn-secondary" onclick="fetchLiveData()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <span>Force Refresh</span>
+              </button>
+              <button class="btn" style="background:#fff1f2; color:#e11d48; border:1px solid #fecdd3; font-weight:700;" onclick="promptClearAllQueue()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <span>Clear Waiting Queue</span>
+              </button>
             </div>
           </div>
 
           <div class="queue-grid">
             <!-- Active 5:00 Slot -->
-            <div class="slot-card" id="slotActiveBox">
-              <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">
-                Active Slot (5-Minute Window)</div>
-              <div id="slotActiveContent" style="padding:1rem 0; color:var(--text-muted);">
-                No customer actively checking out right now.
+            <div class="slot-card is-idle" id="slotActiveBox">
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:0.75rem;">
+                <span style="font-size:0.72rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Active Slot (5-Minute Window)</span>
+                <span class="badge badge-neutral" style="font-size:0.68rem;">SLOT #1</span>
+              </div>
+              <div id="slotActiveContent" style="width:100%;">
+                <div class="slot-idle-state">
+                  <div class="slot-idle-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                  </div>
+                  <div class="slot-idle-title">Slot Ready &amp; Available</div>
+                  <div class="slot-idle-desc">No customer actively checking out. Assigned automatically when a buyer clicks Pay.</div>
+                </div>
               </div>
             </div>
 
             <!-- Processing 30s Slot -->
-            <div class="slot-card" id="slotProcBox">
-              <div style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">
-                Processing Slot (30s Verification Window)</div>
-              <div id="slotProcContent" style="padding:1rem 0; color:var(--text-muted);">
-                No payment in verification window.
+            <div class="slot-card is-idle" id="slotProcBox">
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:0.75rem;">
+                <span style="font-size:0.72rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Processing Slot (30s Verification Window)</span>
+                <span class="badge badge-neutral" style="font-size:0.68rem;">OBSERVERS</span>
+              </div>
+              <div id="slotProcContent" style="width:100%;">
+                <div class="slot-idle-state">
+                  <div class="slot-idle-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  </div>
+                  <div class="slot-idle-title">Verification Standby</div>
+                  <div class="slot-idle-desc">No payment currently awaiting banking SMS / Gmail confirmation.</div>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Waiting Queue Table -->
           <div style="margin-top:1.5rem;">
-            <div style="font-size:0.92rem; font-weight:700; margin-bottom:0.75rem; color:var(--text-heading);">
-              ⏳ Waiting Customer Queue
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.85rem;">
+              <div style="font-size:0.9rem; font-weight:700; color:var(--text-heading); display:flex; align-items:center; gap:0.45rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Waiting Customer Queue</span>
+              </div>
+              <span class="badge badge-neutral" style="font-size:0.72rem;">FIFO Order</span>
             </div>
-            <div style="overflow-x:auto;">
+            <div style="border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--bg-card);">
               <table>
                 <thead>
                   <tr>
@@ -1140,8 +1465,15 @@
                 </thead>
                 <tbody id="queueTableBody">
                   <tr>
-                    <td colspan="5" style="text-align:center; color:var(--text-muted); padding:1rem;">Waiting queue is
-                      empty.</td>
+                    <td colspan="5" style="text-align:center; padding: 2rem 1rem;">
+                      <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+                        <div style="width:36px; height:36px; border-radius:50%; background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <div style="font-weight:700; color:var(--text); font-size:0.85rem;">Waiting Queue is Clear</div>
+                        <div style="font-size:0.78rem; color:var(--text-muted);">Incoming buyers are instantly allocated an active VPA slot.</div>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -3524,6 +3856,7 @@
       items.forEach(item => {
         const btn = document.createElement('button');
         btn.className = `sub-nav-pill ${item.id === defaultSub ? 'active' : ''}`;
+        btn.dataset.subview = item.id;
         btn.textContent = item.label;
         btn.onclick = () => switchSubView(sectionId, item.id);
         subNav.appendChild(btn);
@@ -3537,8 +3870,7 @@
 
       // Update pill styles
       document.querySelectorAll('.sub-nav-pill').forEach(p => {
-        p.classList.remove('active');
-        if (p.onclick.toString().includes(subViewId)) p.classList.add('active');
+        p.classList.toggle('active', p.dataset.subview === subViewId);
       });
 
       // Hide all sub-views in current section and show target
@@ -3899,13 +4231,37 @@
         const m = Math.floor(remainingSec / 60);
         const s = remainingSec % 60;
         content.innerHTML = `
-        <div style="font-size:1.75rem; font-weight:800; color:#38bdf8;">₹${(Number(currentSlot.amountPaise) / 100).toFixed(2)}</div>
-        <div style="font-weight:700; margin:0.35rem 0;">Order #${currentSlot.orderId}</div>
-        <div class="badge badge-info">ACTIVE (⏱ ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')} remaining)</div>
-      `;
+          <div class="slot-active-inner" style="display:flex; flex-direction:column; gap:0.5rem; width:100%;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge" style="background:#e0f2fe; color:#0369a1; font-weight:700;">● CHECKOUT IN PROGRESS</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--primary); font-size:0.85rem;">⏱ ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:0.25rem;">
+              <div>
+                <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Order ID</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1.15rem; color:var(--text-heading);">${escapeHtml(currentSlot.orderId)}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Amount Locked</div>
+                <div style="font-size:1.65rem; font-weight:800; color:#0284c7; letter-spacing:-0.03em;">₹${(Number(currentSlot.amountPaise) / 100).toFixed(2)}</div>
+              </div>
+            </div>
+            <div style="height:6px; background:#e2e8f0; border-radius:999px; overflow:hidden; margin-top:0.35rem;">
+              <div style="height:100%; width:${Math.min(100, Math.max(0, (remainingSec / 300) * 100))}%; background:linear-gradient(90deg, #38bdf8, #2563eb); transition:width 1s linear;"></div>
+            </div>
+          </div>
+        `;
       } else {
-        box.className = 'slot-card';
-        content.innerHTML = '<div style="color:var(--text-muted); padding:1rem 0;">No customer actively checking out.</div>';
+        box.className = 'slot-card is-idle';
+        content.innerHTML = `
+          <div class="slot-idle-state">
+            <div class="slot-idle-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+            </div>
+            <div class="slot-idle-title">Slot Ready &amp; Available</div>
+            <div class="slot-idle-desc">No customer actively checking out. Assigned automatically when a buyer clicks Pay.</div>
+          </div>
+        `;
       }
     }
 
@@ -3918,13 +4274,37 @@
         box.className = 'slot-card busy-proc';
         const remainingSec = currentSlot.processingExpiresAt ? Math.max(0, Math.ceil((new Date(currentSlot.processingExpiresAt).getTime() - Date.now()) / 1000)) : 0;
         content.innerHTML = `
-        <div style="font-size:1.75rem; font-weight:800; color:#fbbf24;">₹${(Number(currentSlot.amountPaise) / 100).toFixed(2)}</div>
-        <div style="font-weight:700; margin:0.35rem 0;">Order #${currentSlot.orderId}</div>
-        <div class="badge badge-warning">VERIFYING (⏳ ${remainingSec}s remaining)</div>
-      `;
+          <div class="slot-active-inner" style="display:flex; flex-direction:column; gap:0.5rem; width:100%;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="badge" style="background:#fef3c7; color:#b45309; font-weight:700;">● PARSING OBSERVER FEEDS</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-weight:700; color:#d97706; font-size:0.85rem;">⏳ ${remainingSec}s left</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:0.25rem;">
+              <div>
+                <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Order In Flight</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1.15rem; color:var(--text-heading);">${escapeHtml(currentSlot.orderId)}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:0.72rem; color:var(--text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Target Credit</div>
+                <div style="font-size:1.65rem; font-weight:800; color:#d97706; letter-spacing:-0.03em;">₹${(Number(currentSlot.amountPaise) / 100).toFixed(2)}</div>
+              </div>
+            </div>
+            <div style="height:6px; background:#e2e8f0; border-radius:999px; overflow:hidden; margin-top:0.35rem;">
+              <div style="height:100%; width:${Math.min(100, Math.max(0, (remainingSec / 30) * 100))}%; background:linear-gradient(90deg, #f59e0b, #b45309); transition:width 1s linear;"></div>
+            </div>
+          </div>
+        `;
       } else {
-        box.className = 'slot-card';
-        content.innerHTML = '<div style="color:var(--text-muted); padding:1rem 0;">No payment in verification.</div>';
+        box.className = 'slot-card is-idle';
+        content.innerHTML = `
+          <div class="slot-idle-state">
+            <div class="slot-idle-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div class="slot-idle-title">Verification Standby</div>
+            <div class="slot-idle-desc">No payment currently awaiting banking SMS / Gmail confirmation.</div>
+          </div>
+        `;
       }
     }
 
@@ -3932,18 +4312,30 @@
       const tbody = document.getElementById('queueTableBody');
       if (!tbody) return;
       if (!queue || queue.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:1rem;">Waiting queue is empty.</td></tr>';
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="text-align:center; padding: 2.5rem 1rem;">
+              <div style="display:flex; flex-direction:column; align-items:center; gap:0.4rem;">
+                <div style="width:36px; height:36px; border-radius:50%; background:#f1f5f9; display:flex; align-items:center; justify-content:center; color:#94a3b8;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div style="font-weight:700; color:var(--text); font-size:0.85rem;">Waiting Queue is Clear</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Incoming buyers are instantly allocated an active VPA slot.</div>
+              </div>
+            </td>
+          </tr>
+        `;
         return;
       }
       tbody.innerHTML = queue.map(q => `
-      <tr>
-        <td><strong>#${q.queuePosition}</strong></td>
-        <td>Order #${q.orderId}</td>
-        <td>₹${(Number(q.amountPaise) / 100).toFixed(2)}</td>
-        <td><span class="badge badge-warning">QUEUED</span></td>
-        <td>${new Date(q.createdAt).toLocaleTimeString()}</td>
-      </tr>
-    `).join('');
+        <tr>
+          <td><span class="badge badge-neutral" style="font-weight:800; font-family:'JetBrains Mono',monospace;">#${q.queuePosition}</span></td>
+          <td><strong style="font-family:'JetBrains Mono',monospace; color:var(--text-heading);">${escapeHtml(q.orderId)}</strong></td>
+          <td style="font-weight:700; color:var(--text-heading);">₹${(Number(q.amountPaise) / 100).toFixed(2)}</td>
+          <td><span class="badge badge-warning" style="font-weight:700;">QUEUED</span></td>
+          <td style="color:var(--text-muted); font-size:0.82rem;">${new Date(q.createdAt).toLocaleTimeString()}</td>
+        </tr>
+      `).join('');
     }
 
     function updateKpis(payments, queue) {
