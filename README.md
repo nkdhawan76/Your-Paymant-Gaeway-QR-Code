@@ -1,17 +1,9 @@
 <div align="center">
 
-```
-██╗   ██╗ ██████╗ ██╗   ██╗██████╗ ██╗    ██████╗  ██████╗ 
-╚██╗ ██╔╝██╔═══██╗██║   ██║██╔══██╗██║    ██╔══██╗██╔════╝ 
- ╚████╔╝ ██║   ██║██║   ██║██████╔╝██║    ██████╔╝██║  ███╗
-  ╚██╔╝  ██║   ██║██║   ██║██╔═══╝ ██║    ██╔═══╝ ██║   ██║
-   ██║   ╚██████╔╝╚██████╔╝██║     ██║    ██║     ╚██████╔╝
-   ╚═╝    ╚═════╝  ╚═════╝ ╚═╝     ╚═╝    ╚═╝      ╚═════╝ 
-```
-
 # ⚡ YOUPI PG V2
 
 ### The Sovereign, Self-Hosted UPI Payment Gateway for Independent Merchants
+
 **0% Gateway Fees • Direct-to-Bank Settlement • WhatsApp Pre-Checkout OTP • Bank SMS & Gmail Observers**
 
 <br/>
@@ -134,41 +126,54 @@ flowchart LR
 ## 🚀 Key Features & Superpowers
 
 ### 1. ⚡ 0% Transaction Fees Forever
+
 Every rupee paid goes straight from your customer's bank account to your bank account via standard NPCI UPI rails. No intermediaries hold your money.
 
 ### 2. 💬 WhatsApp Pre-Checkout Authentication (Berry Protocol)
+
 No more fake orders, bot spam, or fraudulent phone numbers. Before a customer can enter the checkout queue, the gateway delivers a cryptographically random 6-digit OTP directly to their WhatsApp app using the embedded Baileys/Berry Protocol socket. Verified customer profiles are remembered in browser `localStorage`.
 
 ### 3. 🔒 Deterministic Single-Slot FIFO Queue Engine
+
 Because standard UPI alerts do not carry arbitrary merchant metadata, multiple concurrent transactions with identical amounts could create attribution confusion. YOUPI PG solves this with a mathematical invariant:
+
 - **Only ONE customer can pay on a VPA at a time.**
 - Other buyers wait in a database-backed FIFO queue with live position streaming.
 - Guarantees **100% exact payment matching** with zero payment mismatch errors!
 
 ### 4. 📱 Native Android Observer APK (`com.youpi.observer`)
+
 A lightweight, battery-optimized Android foreground service that captures:
+
 - Cellular banking SMS (`android.provider.Telephony.SMS_RECEIVED`).
 - Real-time bank push notifications via `NotificationListenerService`.
 - Enrolls securely via ephemeral QR code and signs all observation payloads with **HMAC-SHA256**.
 
 ### 5. 📧 Automated Gmail & Google Messages Ingestion
+
 Dual backup observation channels:
+
 - **Gmail Observer (Port 6003):** Polls Google Cloud OAuth2 API or automated headless Chrome CDP inbox monitoring.
 - **SMS Observer (Port 6002):** Connects to Google Messages for Web via Chrome DevTools Protocol (CDP).
 
 ### 6. 🏪 Dual Operational Modalities
+
 - **Online Selling Mode:** UPI Vector QR + Cash on Delivery (COD) with customer pre-purchase verification and decoupled address lifecycle.
 - **Offline Store Counter Mode:** Designed for physical retail stores. Supports UPI QR, Cash at Till (`CASH_COUNTER`), and Card at POS Terminal (`CARD_COUNTER`) with an interactive real-time cashier till dock and instant SSE customer approval.
 
 ### 7. 🎨 100% White-Label Customizer
+
 Rebrand the checkout portal completely through the Merchant Admin Panel:
+
 - Custom app name, logo URL, and browser favicon.
 - Tailored color palettes, custom gradients, and trust badges.
 - Custom domain binding via Cloudflare Tunnels (`pay.yourbrand.com`).
 - Complete removal of any "Powered by YouPI PG" attribution.
 
 ### 8. 🚦 5 Standardized Merchant Outcome Pages
+
 Never leave customers hanging with blank screens or 404 errors:
+
 - `/order-success` — Payment verified by observers, order marked paid and provisioned.
 - `/order-failed` — Verification timed out, reassuring customer no money was lost.
 - `/order-suspicious` — Flagged by fraud heuristics, held for manual compliance review.
@@ -182,26 +187,23 @@ Never leave customers hanging with blank screens or 404 errors:
 ## ⚡ Quickstart in 60 Seconds
 
 ### Prerequisites
+
 - **Node.js `>= 20.0.0` LTS** (`node -v`)
 - Standard Linux or Windows host
 - *No Docker or external database services required!*
 
-### 1. Clone & Install Dependencies
-Standard `npm install` works out-of-the-box across all packages and apps without any protocol issues:
-```bash
-git clone https://github.com/gxurav1710/YouPI-PG.git youpi-pg
-cd youpi-pg
-npm install
-```
-
 ### 2. Configure Environment
+
 ```bash
 cp .env.example .env
 ```
+
 *(The default `.env` is pre-configured for localhost out of the box).*
 
 ### 3. Zero-Config Launch (Auto-Initialized SQLite)
+
 On first launch, YOUPI PG automatically provisions `data/youpi_pg.sqlite`, creates the directory if missing, and executes idempotent migrations and baseline seeds. No manual database setup is required:
+
 ```bash
 npm run dev
 # or
@@ -209,6 +211,7 @@ npm start
 ```
 
 That's it! Your entire gateway cluster will spin up:
+
 - 🎛️ **Control Center Supervisor:** [`http://localhost:8090`](http://localhost:8090)
 - 📊 **Merchant Admin Panel:** [`http://localhost:6001`](http://localhost:6001)
 - 🛒 **YOUPI Showcase Demo Store:** [`http://localhost:5000`](http://localhost:5000)
@@ -216,10 +219,13 @@ That's it! Your entire gateway cluster will spin up:
 - 💳 **Customer Checkout Portal:** [`http://localhost:7000`](http://localhost:7000)
 
 ### 4. Run the Full Regression Test Suite
+
 Verify all **31 test suites** across packages, apps, and chaos harnesses:
+
 ```bash
 npm test
 ```
+
 ```text
 ============================================================
 🧪 YOUPI PG V2 — FULL REGRESSION TEST RUNNER
@@ -242,6 +248,7 @@ Running 31 curated test suites...
 Integrating YOUPI PG into your website, web app, or e-commerce store takes less than 5 minutes.
 
 ### Step 1: Add the Universal Script to your `<head>`
+
 ```html
 <!-- Official YOUPI PG Universal Integration Script -->
 <script src="https://pay.yourdomain.com/youpi.js" 
@@ -251,7 +258,9 @@ Integrating YOUPI PG into your website, web app, or e-commerce store takes less 
 ```
 
 ### Step 2: Declarative Button (Zero JavaScript Required!)
+
 Add `data-youpi-pay` attributes to any existing HTML button:
+
 ```html
 <button data-youpi-pay
         data-order-id="ORDER-1001"
@@ -260,9 +269,11 @@ Add `data-youpi-pay` attributes to any existing HTML button:
   ⚡ Buy Now with YOUPI PG
 </button>
 ```
+
 *The script automatically intercepts the click, opens a centered desktop modal (or mobile slide-up bottom sheet), and launches the checkout session!*
 
 ### Step 3: Programmatic API (For React, Vue, Next.js, Nuxt)
+
 ```javascript
 window.Youpi.pay({
   order_id: 'ORDER-1001',
@@ -282,9 +293,11 @@ window.Youpi.pay({
 ```
 
 ### Step 4: Authoritative Server-to-Server Webhook Verification
+>
 > ⚠️ **CRITICAL SECURITY RULE:** Never fulfill orders based solely on frontend browser events. Always verify the backend HMAC-SHA256 signature! Consumers **MUST** compute the HMAC over the raw, unparsed request bytes before any JSON parsing.
 
-#### Webhook Contract:
+#### Webhook Contract
+
 - **Header**: `X-Gateway-Signature: sha256=<64_char_hex_hash>`
 - **Additional Headers**: `X-Gateway-Event: SUCCESS`, `X-Gateway-Delivery-Id: <uuid>`, `X-Gateway-Timestamp: <timestamp_ms>`
 - **Payload Fields**:
@@ -295,9 +308,10 @@ window.Youpi.pay({
   - `utr`: 12-digit bank reference number
   - `paymentId`: Unique gateway payment session UUID
 
-#### Polyglot Webhook Verification Snippets:
+#### Polyglot Webhook Verification Snippets
 
 ##### 1. Node.js (Express)
+
 ```javascript
 import crypto from 'node:crypto';
 
@@ -320,6 +334,7 @@ app.post('/api/youpi-webhook', express.raw({ type: 'application/json' }), (req, 
 ```
 
 ##### 2. Python (FastAPI)
+
 ```python
 import hmac, hashlib, json
 from fastapi import FastAPI, Request, HTTPException
@@ -344,6 +359,7 @@ async def youpi_webhook(request: Request):
 ```
 
 ##### 3. PHP
+
 ```php
 <?php
 $rawPayload = file_get_contents('php://input');
@@ -368,52 +384,53 @@ echo json_encode(['received' => true]);
 ```
 
 ##### 4. Go (`net/http`)
+
 ```go
 package main
 
 import (
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/hex"
-	"encoding/json"
-	"io"
-	"net/http"
-	"os"
+ "crypto/hmac"
+ "crypto/sha256"
+ "encoding/hex"
+ "encoding/json"
+ "io"
+ "net/http"
+ "os"
 )
 
 func youpiWebhookHandler(w http.ResponseWriter, r *http.Request) {
-	rawBody, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "Cannot read body", http.StatusBadRequest)
-		return
-	}
-	defer r.Body.Close()
+ rawBody, err := io.ReadAll(r.Body)
+ if err != nil {
+  http.Error(w, "Cannot read body", http.StatusBadRequest)
+  return
+ }
+ defer r.Body.Close()
 
-	signature := r.Header.Get("X-Gateway-Signature")
-	secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
+ signature := r.Header.Get("X-Gateway-Signature")
+ secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
 
-	mac := hmac.New(sha256.New, secret)
-	mac.Write(rawBody)
-	expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
+ mac := hmac.New(sha256.New, secret)
+ mac.Write(rawBody)
+ expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
 
-	if !hmac.Equal([]byte(signature), []byte(expected)) {
-		http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
-		return
-	}
+ if !hmac.Equal([]byte(signature), []byte(expected)) {
+  http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
+  return
+ }
 
-	var payload struct {
-		Event       string `json:"event"`
-		OrderId     string `json:"orderId"`
-		UTR         string `json:"utr"`
-		Amount      string `json:"amount"`
-		AmountPaise int64  `json:"amountPaise"`
-	}
-	if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
-		// Fulfill order: payload.OrderId, payload.UTR, payload.Amount
-	}
+ var payload struct {
+  Event       string `json:"event"`
+  OrderId     string `json:"orderId"`
+  UTR         string `json:"utr"`
+  Amount      string `json:"amount"`
+  AmountPaise int64  `json:"amountPaise"`
+ }
+ if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
+  // Fulfill order: payload.OrderId, payload.UTR, payload.Amount
+ }
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"received":true}`))
+ w.WriteHeader(http.StatusOK)
+ w.Write([]byte(`{"received":true}`))
 }
 ```
 
@@ -525,6 +542,7 @@ Distributed under commercial and sovereign licensing for independent merchant de
 <div align="center">
 
 ### Built for Financial Sovereignty in India 🇮🇳
+
 **Take back control of your payments. Zero middleman fees. Direct settlement.**
 
 ⭐ **Star this repository if you believe in open, zero-fee payment infrastructure!**

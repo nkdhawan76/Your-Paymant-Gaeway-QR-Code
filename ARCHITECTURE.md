@@ -1,7 +1,7 @@
 # ARCHITECTURE.md — Canonical System Architecture & Engineering Blueprint
 
-> **YOUPI PG V2**  
-> *Sovereign • Self-Hosted • Zero-Fee • Deterministic UPI Payment Gateway Suite*  
+> **Your Payment Gateway**  
+> *Sovereign • Self-Hosted • Zero-Fee • UPI Payment Gateway*  
 > **Architecture Reference:** Production Specification V2  
 > **Runtime Target:** Node.js `>= 20.0.0` (ESM Native) • SQLite WAL • Android Kotlin
 

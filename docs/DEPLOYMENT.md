@@ -1,6 +1,6 @@
-# YOUPI PG V2 — Deployment & Installation Guide
+# Your Payment Gateway — Deployment & Installation Guide
 
-This document describes how to deploy and run the clean distributable **YOUPI PG V2** package.
+This document describes how to deploy and run the clean distributable **Your Payment Gateway** package.
 
 ---
 

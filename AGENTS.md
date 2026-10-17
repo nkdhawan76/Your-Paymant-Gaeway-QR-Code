@@ -1,13 +1,13 @@
 # AGENTS.md — Integration Guide for AI Coding Agents
 
-> **Audience**: AI Coding Agents & Pair Programmers integrating YOUPI PG V2 into developer applications.  
-> **Purpose**: Authoritative reference on the YOUPI payment lifecycle, one-script frontend integration, browser events, and server-to-server webhook verification.
+> **Audience**: AI Coding Agents & Pair Programmers integrating Your Payment Gateway into developer applications.  
+> **Purpose**: Authoritative reference on the payment lifecycle, one-script frontend integration, browser events, and server-to-server webhook verification.
 
 ---
 
 ## 1. High-Level Architecture
 
-YOUPI PG V2 is a self-hosted, sovereign payment gateway designed for zero-fee UPI and counter payments with automated banking observation (SMS & Gmail parsing).
+Your Payment Gateway is a self-hosted, sovereign payment gateway designed for zero-fee UPI and counter payments with automated banking observation (SMS & Gmail parsing).
 
 ```
   [ Merchant Website / App ]
