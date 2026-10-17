@@ -9,7 +9,7 @@
 
 Your Paymant Gaeway is a self-hosted, sovereign payment gateway designed for zero-fee UPI and counter payments with automated banking observation (SMS & Gmail parsing).
 
-```
+```text
   [ Merchant Website / App ]
               │
     (1) Adds one script: <script src=".../youpi.js" data-youpi-key="...">
@@ -40,6 +40,7 @@ Your Paymant Gaeway is a self-hosted, sovereign payment gateway designed for zer
 ## 2. Universal One-Script Integration
 
 ### Step 1: Script Inclusion
+
 Place the script tag in the page's HTML `<head>` or `<body>`:
 
 ```html
@@ -53,6 +54,7 @@ Place the script tag in the page's HTML `<head>` or `<body>`:
 - In production, it is your canonical checkout portal domain (e.g., `https://pay.yourdomain.com`).
 
 ### Step 2: One-Button Zero-JS Configuration
+
 Tag any clickable button with `data-youpi-pay`:
 
 ```html
@@ -72,6 +74,7 @@ Tag any clickable button with `data-youpi-pay`:
 The script automatically binds click events to elements with `[data-youpi-pay]`, including elements created dynamically at runtime.
 
 ### Step 3: Programmatic API (`Youpi.pay`)
+
 For single-page apps (React, Next.js, Vue, Nuxt, Svelte), use the programmatic interface:
 
 ```javascript
@@ -113,7 +116,8 @@ The frontend script emits normalized DOM `CustomEvent`s on `window`:
 | `youpi:payment:cancelled` | Customer cancelled or dismissed the checkout |
 | `youpi:payment:result` | Unified event dispatched on any outcome |
 
-### Payload Contract (`event.detail`):
+### Payload Contract (`event.detail`)
+
 ```javascript
 {
   "status": "SUCCESS",              // 'SUCCESS' | 'FAILED' | 'SUSPICIOUS' | 'EXPIRED' | 'CANCELLED'
@@ -134,7 +138,8 @@ The frontend script emits normalized DOM `CustomEvent`s on `window`:
 > **NEVER** mark orders as fulfilled or deliver digital goods based on browser events. Only fulfill orders after verifying the server-to-server webhook!  
 > **RAW BODY REQUIREMENT**: Request bytes must **NOT** be parsed to JSON before HMAC calculation. Parsing and re-stringifying alters whitespace and key order, causing signature verification failure. Always compute HMAC over raw unparsed request bytes!
 
-### Webhook Request Specifications:
+### Webhook Request Specifications
+
 - **HTTP Method**: `POST`
 - **Headers**:
   - `Content-Type: application/json`
@@ -143,7 +148,8 @@ The frontend script emits normalized DOM `CustomEvent`s on `window`:
   - `X-Gateway-Delivery-Id: <uuid>`
   - `X-Gateway-Timestamp: <ms>`
 
-### Payload Contract (`payload`):
+### Payload Contract (`payload`)
+
 ```json
 {
   "event": "SUCCESS",
@@ -159,9 +165,10 @@ The frontend script emits normalized DOM `CustomEvent`s on `window`:
 }
 ```
 
-### Polyglot Webhook Verification Implementations:
+### Polyglot Webhook Verification Implementations
 
 #### 1. Node.js (Express)
+
 ```javascript
 import crypto from 'node:crypto';
 
@@ -190,6 +197,7 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), (req, res) =
 ```
 
 #### 2. Python (FastAPI)
+
 ```python
 import hmac, hashlib, json
 from fastapi import FastAPI, Request, HTTPException
@@ -214,6 +222,7 @@ async def youpi_webhook(request: Request):
 ```
 
 #### 3. PHP
+
 ```php
 <?php
 $rawPayload = file_get_contents('php://input');
@@ -238,52 +247,53 @@ echo json_encode(['received' => true]);
 ```
 
 #### 4. Go (`net/http`)
+
 ```go
 package main
 
 import (
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/hex"
-	"encoding/json"
-	"io"
-	"net/http"
-	"os"
+  "crypto/hmac"
+  "crypto/sha256"
+  "encoding/hex"
+  "encoding/json"
+  "io"
+  "net/http"
+  "os"
 )
 
 func youpiWebhookHandler(w http.ResponseWriter, r *http.Request) {
-	rawBody, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "Cannot read body", http.StatusBadRequest)
-		return
-	}
-	defer r.Body.Close()
+  rawBody, err := io.ReadAll(r.Body)
+  if err != nil {
+    http.Error(w, "Cannot read body", http.StatusBadRequest)
+    return
+  }
+  defer r.Body.Close()
 
-	signature := r.Header.Get("X-Gateway-Signature")
-	secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
+  signature := r.Header.Get("X-Gateway-Signature")
+  secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
 
-	mac := hmac.New(sha256.New, secret)
-	mac.Write(rawBody)
-	expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
+  mac := hmac.New(sha256.New, secret)
+  mac.Write(rawBody)
+  expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
 
-	if !hmac.Equal([]byte(signature), []byte(expected)) {
-		http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
-		return
-	}
+  if !hmac.Equal([]byte(signature), []byte(expected)) {
+    http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
+    return
+  }
 
-	var payload struct {
-		Event       string `json:"event"`
-		OrderId     string `json:"orderId"`
-		UTR         string `json:"utr"`
-		Amount      string `json:"amount"`
-		AmountPaise int64  `json:"amountPaise"`
-	}
-	if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
-		// Authoritatively mark order as PAID: payload.OrderId, payload.UTR, payload.Amount
-	}
+  var payload struct {
+    Event       string `json:"event"`
+    OrderId     string `json:"orderId"`
+    UTR         string `json:"utr"`
+    Amount      string `json:"amount"`
+    AmountPaise int64  `json:"amountPaise"`
+  }
+  if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
+    // Authoritatively mark order as PAID: payload.OrderId, payload.UTR, payload.Amount
+  }
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"received":true}`))
+  w.WriteHeader(http.StatusOK)
+  w.Write([]byte(`{"received":true}`))
 }
 ```
 

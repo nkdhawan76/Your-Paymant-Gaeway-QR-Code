@@ -9,6 +9,7 @@ Your Paymant Gaeway provides a **Universal One-Script Integration** that allows 
 ## 1. Quick Start (5-Minute Integration)
 
 ### Step 1: Add the Script
+
 Include the official script in your HTML:
 
 ```html
@@ -21,6 +22,7 @@ Include the official script in your HTML:
 *(For local testing, `<checkout-portal-host>` is `http://localhost:7000`)*
 
 ### Step 2: Add Your Payment Button
+
 Add the `data-youpi-pay` attribute to your payment button:
 
 ```html
@@ -52,9 +54,9 @@ When clicked, the script automatically dims and blurs the page, pops up the cent
 | `data-metadata` | Optional | JSON string of custom developer metadata | `'{"plan":"pro"}'` |
 | `data-success-url` | Optional | Redirect URL on payment success | `"/order-success"` |
 | `data-failed-url` | Optional | Redirect URL on payment failure | `"/order-failed"` |
-| `data-suspicious-url`| Optional | Redirect URL if flagged as suspicious | `"/order-suspicious"` |
+| `data-suspicious-url` | Optional | Redirect URL if flagged as suspicious | `"/order-suspicious"` |
 | `data-expired-url` | Optional | Redirect URL on session expiry | `"/order-expired"` |
-| `data-cancelled-url`| Optional | Redirect URL on user cancellation | `"/order-cancelled"` |
+| `data-cancelled-url` | Optional | Redirect URL on user cancellation | `"/order-cancelled"` |
 
 ---
 
@@ -74,47 +76,44 @@ Youpi.pay({
   },
   metadata: {
     sku: "SUBSCRIPTION-YEARLY",
-    user_id: "usr_42"
+    cart_id: "CART-9988"
   },
   handler: function(response) {
-    console.log("Payment Confirmed:", response);
-    // { status: "SUCCESS", order_id: "ORDER-1001", amount_received: 499.00, utr: "123456789012", payment_mode: "UPI" }
-  },
-  onFailed: function(response) {
-    console.warn("Payment Failed:", response.reason);
+    console.log("Payment Confirmed in Modal!", response);
+    // response: { status: 'SUCCESS', order_id: 'ORDER-1001', amount_received: 499, utr: '123456789012' }
+    window.location.href = `/order-success?order_id=${response.order_id}&utr=${response.utr}`;
   },
   onClose: function() {
-    console.log("Customer closed the checkout modal");
+    console.log("Customer closed the checkout modal.");
   }
 });
 ```
 
 ---
 
-## 4. Frontend Browser Payment Events
+## 4. Frontend DOM CustomEvents
 
-The script emits standard DOM `CustomEvent`s on `window`:
+The universal script emits standardized `CustomEvent`s on `window` for reactive interface updates:
 
 ```javascript
 // 1. Success Event
 window.addEventListener('youpi:payment:success', (e) => {
-  const { order_id, amount_received, utr, payment_mode } = e.detail;
-  console.log(`Order ${order_id} verified! Bank UTR: ${utr}`);
+  console.log(`Payment successful for Order: ${e.detail.order_id}, UTR: ${e.detail.utr}`);
 });
 
 // 2. Failed Event
 window.addEventListener('youpi:payment:failed', (e) => {
-  console.log(`Order ${e.detail.order_id} failed: ${e.detail.reason}`);
+  console.log(`Payment failed for Order: ${e.detail.order_id}. Reason: ${e.detail.reason}`);
 });
 
-// 3. Suspicious / Security Review Event
+// 3. Suspicious / Review Event
 window.addEventListener('youpi:payment:suspicious', (e) => {
-  console.warn(`Order ${e.detail.order_id} held for security review.`);
+  console.log(`Payment flagged for manual review: ${e.detail.order_id}`);
 });
 
-// 4. Session Expired Event
+// 4. Expired Event
 window.addEventListener('youpi:payment:expired', (e) => {
-  console.log(`Order ${e.detail.order_id} active window expired.`);
+  console.log(`Session expired for Order: ${e.detail.order_id}`);
 });
 
 // 5. Cancelled Event
@@ -131,7 +130,8 @@ window.addEventListener('youpi:payment:cancelled', (e) => {
 
 The only authoritative confirmation of payment is the **HMAC-SHA256 signed server-to-server webhook**.
 
-### Webhook Delivery Format:
+### Webhook Delivery Format
+
 - **Headers**:
   - `Content-Type: application/json`
   - `X-Gateway-Event: SUCCESS`
@@ -139,22 +139,24 @@ The only authoritative confirmation of payment is the **HMAC-SHA256 signed serve
   - `X-Gateway-Delivery-Id: <uuid>`
   - `X-Gateway-Timestamp: <timestamp_ms>`
 - **Payload**:
-  ```json
-  {
-    "event": "SUCCESS",
-    "paymentId": "c7942127-14e3-469a-9e4a-9359a16f903a",
-    "orderId": "ORDER-1001",
-    "amount": "499.00",
-    "amountPaise": 49900,
-    "currency": "INR",
-    "method": "UPI",
-    "utr": "123456789012",
-    "completedAt": "2026-10-07T12:00:00.000Z",
-    "metadata": { "sku": "SUBSCRIPTION-YEARLY" }
-  }
-  ```
 
-### Verification Security Invariants:
+```json
+{
+  "event": "SUCCESS",
+  "paymentId": "c7942127-14e3-469a-9e4a-9359a16f903a",
+  "orderId": "ORDER-1001",
+  "amount": "499.00",
+  "amountPaise": 49900,
+  "currency": "INR",
+  "method": "UPI",
+  "utr": "123456789012",
+  "completedAt": "2026-10-07T12:00:00.000Z",
+  "metadata": { "sku": "SUBSCRIPTION-YEARLY" }
+}
+```
+
+### Verification Security Invariants
+
 - **Raw Body Required**: Consumers **MUST** compute the HMAC over raw, unparsed request bytes. Never parse JSON before HMAC calculation.
 - **Constant-Time Comparison**: Protect against timing side-channel attacks by always using constant-time comparison functions:
   - Node.js: `crypto.timingSafeEqual`
@@ -163,9 +165,10 @@ The only authoritative confirmation of payment is the **HMAC-SHA256 signed serve
   - Go: `hmac.Equal`
 - **Signature Prefix**: Formatted as `X-Gateway-Signature: sha256=<64_char_hex_hash>`.
 
-### Verification Implementations:
+### Verification Implementations
 
 #### 1. Node.js (Express)
+
 ```javascript
 import crypto from 'node:crypto';
 
@@ -188,6 +191,7 @@ app.post('/api/youpi-webhook', express.raw({ type: 'application/json' }), (req, 
 ```
 
 #### 2. Python (FastAPI)
+
 ```python
 import hmac, hashlib, json
 from fastapi import FastAPI, Request, HTTPException
@@ -212,6 +216,7 @@ async def youpi_webhook(request: Request):
 ```
 
 #### 3. PHP
+
 ```php
 <?php
 $rawPayload = file_get_contents('php://input');
@@ -236,51 +241,52 @@ echo json_encode(['received' => true]);
 ```
 
 #### 4. Go (`net/http`)
+
 ```go
 package main
 
 import (
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/hex"
-	"encoding/json"
-	"io"
-	"net/http"
-	"os"
+  "crypto/hmac"
+  "crypto/sha256"
+  "encoding/hex"
+  "encoding/json"
+  "io"
+  "net/http"
+  "os"
 )
 
 func youpiWebhookHandler(w http.ResponseWriter, r *http.Request) {
-	rawBody, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "Cannot read body", http.StatusBadRequest)
-		return
-	}
-	defer r.Body.Close()
+  rawBody, err := io.ReadAll(r.Body)
+  if err != nil {
+    http.Error(w, "Cannot read body", http.StatusBadRequest)
+    return
+  }
+  defer r.Body.Close()
 
-	signature := r.Header.Get("X-Gateway-Signature")
-	secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
+  signature := r.Header.Get("X-Gateway-Signature")
+  secret := []byte(os.Getenv("YOUPI_WEBHOOK_SECRET"))
 
-	mac := hmac.New(sha256.New, secret)
-	mac.Write(rawBody)
-	expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
+  mac := hmac.New(sha256.New, secret)
+  mac.Write(rawBody)
+  expected := "sha256=" + hex.EncodeToString(mac.Sum(nil))
 
-	if !hmac.Equal([]byte(signature), []byte(expected)) {
-		http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
-		return
-	}
+  if !hmac.Equal([]byte(signature), []byte(expected)) {
+    http.Error(w, "Invalid webhook signature", http.StatusUnauthorized)
+    return
+  }
 
-	var payload struct {
-		Event       string `json:"event"`
-		OrderId     string `json:"orderId"`
-		UTR         string `json:"utr"`
-		Amount      string `json:"amount"`
-		AmountPaise int64  `json:"amountPaise"`
-	}
-	if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
-		// Fulfill order: payload.OrderId, payload.UTR, payload.Amount
-	}
+  var payload struct {
+    Event       string `json:"event"`
+    OrderId     string `json:"orderId"`
+    UTR         string `json:"utr"`
+    Amount      string `json:"amount"`
+    AmountPaise int64  `json:"amountPaise"`
+  }
+  if err := json.Unmarshal(rawBody, &payload); err == nil && payload.Event == "SUCCESS" {
+    // Fulfill order: payload.OrderId, payload.UTR, payload.Amount
+  }
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"received":true}`))
+  w.WriteHeader(http.StatusOK)
+  w.Write([]byte(`{"received":true}`))
 }
 ```

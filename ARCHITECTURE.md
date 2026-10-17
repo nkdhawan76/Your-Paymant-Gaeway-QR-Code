@@ -12,14 +12,18 @@
 **YOUPI PG** is a sovereign, self-hosted, white-label UPI and multi-modal payment gateway engineered for small-scale merchants, digital creators, and independent businesses in India.
 
 ### The Problem It Solves
+
 Traditional Indian payment aggregators (Razorpay, Cashfree, PayU, Paytm) impose:
+
 1. **Aggressive Fees:** 2.0% to 3.0% + 18% GST per transaction.
 2. **Delayed Settlements:** T+2 to T+3 business day settlement cycles that choke operational cash flow.
 3. **Arbitrary Account Freezes:** Unilateral merchant fund withholding and sudden KYC lockdowns.
 4. **Phone Spoofing & Fraud:** Fraudulent orders placed using arbitrary fake phone numbers.
 
 ### The YOUPI PG Solution
+
 YOUPI PG eliminates the aggregator intermediary completely:
+
 - **0% Transaction Fees Forever:** Payments are settled directly into the merchant's bank account via peer-to-peer (P2P) UPI rails.
 - **Sub-Second Direct Settlement:** Zero holdbacks. Funds land in the merchant's account instantly.
 - **Deterministic Bank Observation:** Uses incoming cellular Bank SMS and Gmail notifications to verify payment credits cryptographically without official banking API licenses.
@@ -33,43 +37,60 @@ YOUPI PG eliminates the aggregator intermediary completely:
 Every subsystem in YOUPI PG adheres to eight strict mathematical and operational invariants:
 
 ### Invariant 1 — Deterministic Amount-Only Attribution
+
 Payment attribution enforces a strict equality invariant:
+
 $$\text{expected\_amount} == \text{observed\_amount}$$
+
 The system never uses fuzzy matching, probabilistic scoring, or guesswork. A payment session transitions to `SUCCESS` if and only if an observed banking credit exactly matches the session's expected amount on the assigned receiving account.
 
 ### Invariant 2 — Exclusive Single-Active-Slot FIFO Queue
+
 Because standard P2P UPI transfers do not carry programmatic merchant transaction IDs in bank SMS alerts, multiple simultaneous transactions of identical amounts on the same VPA would cause attribution ambiguity.
+
 - **The Invariant:** Exactly **ONE** customer payment session can occupy an `ACTIVE` or `PROCESSING` state on a given receiving VPA at any instant.
 - **Concurrency Management:** Additional concurrent customers are serialized into a database-backed **FIFO Queue** (`QUEUED` state).
 - **Live Promotion:** As soon as the active session succeeds, fails, or expires, the queue arbiter atomically promotes customer #1 to `ACTIVE` and pushes real-time Server-Sent Events (SSE) to update the customer's browser.
 
 ### Invariant 3 — Server-Authoritative Decoupled Dual Timers
+
 Timing is governed exclusively by the backend state machine, not client-side JavaScript:
+
 1. **5-Minute Payment Window (`ACTIVE`):** Countdown for the customer to scan the QR code and pay. Remains immutable across browser refreshes and server reboots.
 2. **30-Second Verification Window (`PROCESSING`):** Triggered when the customer clicks *"PAYMENT DONE — CHECK MY PAYMENT"*. Decoupled from the 5-minute timer to allow dedicated, high-frequency observer polling.
 
 ### Invariant 4 — Pure Vector SVG QR Code Engine
+
 Generates mathematically genuine ISO/IEC 18004 compliant vector SVG QR codes for standard UPI URIs (`upi://pay?pa=...&pn=...&am=...&cu=INR&tn=...`).
+
 - Zero reliance on external Google Charts or third-party image generation APIs.
 - Sub-second vector generation that scales crisply to any resolution.
 
 ### Invariant 5 — Integer Minor Units (Paise) Arithmetic
+
 All financial calculations, database fields, and API contracts represent money strictly as 64-bit integer minor units (**Paise**).
+
 - ₹1.00 = `100` paise | ₹499.00 = `49900` paise.
 - Zero floating-point representation (`0.1 + 0.2` rounding errors are mathematically impossible).
 
 ### Invariant 6 — Gateway-Owned Pre-Checkout Identity
+
 The Payment Gateway is the exclusive owner of customer authentication. Merchandising storefronts do not collect or verify customer mobile credentials:
+
 - Customers authenticate via **WhatsApp OTP** powered by Berry Protocol / Baileys multi-device socket.
 - Eliminates phone number spoofing, unauthenticated bot sessions, and fake orders before slot allocation.
 
 ### Invariant 7 — Pure Source & SQLite WAL Architecture
+
 The active production persistence layer uses Node.js native `node:sqlite` (`DatabaseSync`) operating in Write-Ahead Logging (`WAL`) mode with foreign key constraints enabled (`PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;`).
+
 - Zero external database daemon dependencies.
 - Zero Docker container overhead.
 
 ### Invariant 8 — Zero-Config Database Auto-Provisioning
+
 On first system boot or after cloning, YOUPI PG guarantees zero-config database provisioning:
+
 - Automatically detects if `data/youpi_pg.sqlite` and core tables exist (`SELECT count(*) FROM sqlite_master WHERE type='table' AND name='merchants'`).
 - If missing, creates the parent directory `data/` and runs all schema DDL and baseline seeds idempotently before accepting HTTP traffic.
 - Eliminates manual database creation scripts and avoids runtime `SqliteError: no such table` crashes entirely.
@@ -79,76 +100,63 @@ On first system boot or after cloning, YOUPI PG guarantees zero-config database 
 ## 3. High-Level System Architecture
 
 ```mermaid
-flowchart TB
-    subgraph ClientLayer["Client & Storefront Layer"]
-        BuyerBrowser["Buyer Browser / Smartphone"]
-        MerchantStore["Merchant E-Commerce Storefront"]
-        CashierPOS["In-Store Cashier POS Counter"]
+graph TB
+    subgraph ClientLayer [Customer & Frontend Ingress]
+        Browser[Customer Browser / Mobile]
+        Store[Merchant Storefront]
+        UniversalSDK[youpi.js Universal SDK]
     end
 
-    subgraph GatewayFrontend["Gateway Frontend Services"]
-        CheckoutPortal["Checkout Portal (Port 7000)<br/>• Dynamic Vector UPI QR<br/>• WhatsApp OTP Modal<br/>• Decoupled Dual Timers<br/>• Mobile Bottom Sheet"]
-        AdminDashboard["Merchant Admin Panel (Port 6001)<br/>• White-Label Customizer<br/>• Cashier Till Dock<br/>• Live VPA Slot Hub<br/>• WhatsApp Pairing"]
-        DemoStore["YOUPI Showcase Store (Port 5000)<br/>• Enterprise Gateway PDP<br/>• 5 Outcome Demos<br/>• Developer Guide"]
+    subgraph GatewayCore [Payment Gateway Core :6100 / :7000]
+        CheckoutPortal[Checkout Portal :7000]
+        APIGateway[Payment Core API :6100]
+        StateMachine[State Machine & Queue Arbiter]
+        Normalizer[Observation Normalizer]
+        WebhookEngine[Authoritative Webhook Engine]
     end
 
-    subgraph CoreBackend["Payment Core REST Engine (Port 6100)"]
-        APIEndpoints["REST Routing & SSE Stream Engine"]
-        AuthService["WhatsApp Berry Auth Service<br/>(Baileys MD Socket)"]
-        QueueEngine["FIFO Slot Arbiter & Queue Engine"]
-        TimingEngine["Dual Server-Authoritative Timers"]
-        AttributionEngine["Attribution & Deduplication Normalizer"]
-        FraudEngine["Browser Fingerprinting & Instant Ban"]
-        WebhookEngine["HMAC-SHA256 Webhook Dispatcher"]
+    subgraph Storage [Persistence Layer]
+        SQLite[(Native SQLite WAL)]
     end
 
-    subgraph ObservationMesh["Tri-Channel Banking Observation Mesh"]
-        AndroidAPK["Android Observer APK<br/>• SMS_RECEIVED Broadcast<br/>• NotificationListenerService<br/>• Ephemeral QR Pairing<br/>• HMAC-SHA256 Payload Signing"]
-        GmailObserver["Gmail Observer (Port 6003)<br/>• Google Cloud OAuth2 API<br/>• Headless Chrome CDP Inbox Poller"]
-        SMSObserver["SMS Observer (Port 6002)<br/>• Google Messages Web CDP<br/>• Real-time DOM Text Extractor"]
+    subgraph BankingObservers [Tri-Channel Observation Mesh]
+        AndroidAPK[Android Cellular SMS APK]
+        GmailObserver[Gmail API Observer :6003]
+        SMSObserver[SMS Messages Web Observer :6002]
     end
 
-    subgraph PersistenceLayer["Storage & Supervision"]
-        SQLiteDB[("SQLite WAL Database<br/>• data/youpi_pg.sqlite<br/>• Strict Foreign Keys<br/>• Atomic BEGIN/COMMIT")]
-        ControlCenter["Control Center (Port 8090)<br/>• Host Process Supervisor<br/>• Health & Log Aggregator"]
+    subgraph MerchantIngress [Merchant Services]
+        MerchantAdmin[Merchant Admin Portal :6001]
+        ControlCenter[Process Supervisor :8090]
+        MerchantBackend[Merchant Backend API]
     end
 
-    BuyerBrowser -->|Interacts with| CheckoutPortal
-    MerchantStore -->|SDK Embed / youpi.js| CheckoutPortal
-    CashierPOS -->|Approves Till Cash/Card| AdminDashboard
-
-    CheckoutPortal -->|REST & SSE Stream| APIEndpoints
-    AdminDashboard -->|Management API| APIEndpoints
-    DemoStore -->|/api/checkout| APIEndpoints
-
-    APIEndpoints --> AuthService
-    APIEndpoints --> QueueEngine
-    APIEndpoints --> TimingEngine
-    APIEndpoints --> AttributionEngine
-    APIEndpoints --> FraudEngine
-
-    AuthService --> SQLiteDB
-    QueueEngine --> SQLiteDB
-    TimingEngine --> SQLiteDB
-
-    AndroidAPK -->|POST /api/v1/observers/sms (Signed)| APIEndpoints
-    GmailObserver -->|POST /api/v1/observers/gmail| APIEndpoints
-    SMSObserver -->|POST /api/v1/observers/sms| APIEndpoints
-
-    AttributionEngine --> SQLiteDB
-    AttributionEngine --> WebhookEngine
-    WebhookEngine -->|Signed HMAC Webhook| MerchantStore
-
-    ControlCenter -.->|Supervises PIDs| CoreBackend
-    ControlCenter -.->|Supervises PIDs| GatewayFrontend
-    ControlCenter -.->|Supervises PIDs| ObservationMesh
+    Store -->|Click Button| UniversalSDK
+    UniversalSDK -->|Render Modal| CheckoutPortal
+    CheckoutPortal -->|Fetch Session| APIGateway
+    APIGateway --> StateMachine
+    StateMachine --> SQLite
+    
+    AndroidAPK -->|POST /api/v1/observers/sms| APIGateway
+    GmailObserver -->|POST /api/v1/observers/gmail| APIGateway
+    SMSObserver -->|POST /api/v1/observers/sms-web| APIGateway
+    
+    APIGateway --> Normalizer
+    Normalizer --> StateMachine
+    
+    StateMachine -->|Payment Verified| WebhookEngine
+    WebhookEngine -->|POST HMAC-SHA256| MerchantBackend
+    
+    MerchantAdmin --> APIGateway
+    ControlCenter --> GatewayCore
 ```
 
 ---
 
-## 4. Subsystem Deep-Dive
+## 4. Deep-Dive Component Architecture
 
 ### 4.1 Invariant Single-Slot Queue Engine
+
 The queue engine guarantees serialized, non-conflicting payment slot assignment.
 
 ```mermaid
@@ -176,6 +184,7 @@ stateDiagram-v2
 ```
 
 #### Atomic Slot Acquisition Logic
+
 ```javascript
 // packages/core/src/queue-engine.js (Abstracted Schema)
 db.exec('BEGIN IMMEDIATE TRANSACTION');
@@ -203,7 +212,9 @@ db.exec('COMMIT');
 ---
 
 ### 4.2 Customer Pre-Gateway WhatsApp Authentication Engine
+
 To prevent phone spoofing, bots, and unauthenticated slot exhaustion, customer identity is owned exclusively by the gateway before payment timers begin:
+
 1. **Step 1 — Mobile Input:** Customer enters 10-digit Indian mobile number.
 2. **Step 2 — User Check:** Gateway checks `customers` table. If existing, dispatches OTP immediately; if new, captures full name and optional email first.
 3. **Step 3 — 6-Digit WhatsApp OTP:** The gateway's Baileys multi-device socket generates a cryptographically secure 6-digit numeric OTP and delivers it directly to the customer's WhatsApp app.
@@ -212,6 +223,7 @@ To prevent phone spoofing, bots, and unauthenticated slot exhaustion, customer i
 ---
 
 ### 4.3 Tri-Channel Banking Observation Engine
+
 YOUPI PG captures bank credit alerts across three redundant layers:
 
 | Layer | Component | Mechanism | Security & Integrity |
@@ -221,7 +233,9 @@ YOUPI PG captures bank credit alerts across three redundant layers:
 | **Layer 3** | **SMS Observer** (Port 6002) | Headless Chrome CDP automation pairing with Google Messages for Web (`messages.google.com/web`). | Real-time DOM text parsing extracting incoming SMS banking alerts without physical phone cables. |
 
 #### Unified Normalization & Deduplication
+
 Every incoming observation passes through `ObservationNormalizer`:
+
 - Extracts normalized fields: `amountPaise`, `receivingAccount`, `utr`, `senderVpa`, `timestamp`.
 - Computes observation cluster fingerprint:
   $$\text{hash} = \text{SHA-256}(\text{receivingAccount} + \text{amountPaise} + \text{utr} + \text{timeBucket})$$
@@ -263,7 +277,9 @@ graph TD
 YOUPI PG distributes a single, framework-independent universal browser bundle: [`/youpi.js`](apps/checkout-portal/src/sdk/youpi.js).
 
 #### 1. Zero-JS Declarative Button Embedding
+
 Merchants add the script and declarative attributes to any HTML button:
+
 ```html
 <script src="https://pay.yourdomain.com/youpi.js" data-youpi-key="MERCHANT_PUBLIC_KEY"></script>
 
@@ -276,7 +292,9 @@ Merchants add the script and declarative attributes to any HTML button:
 ```
 
 #### 2. Programmatic Invocation (`Youpi.pay`)
+
 For SPAs (React, Next.js, Vue, Nuxt, Angular):
+
 ```javascript
 window.Youpi.pay({
   checkoutUrl: session.checkoutUrl,
@@ -296,7 +314,9 @@ window.Youpi.pay({
 ```
 
 #### 3. Standardized Browser DOM CustomEvents
+
 Driven directly on `window` for reactive UI animations:
+
 - `youpi:payment:success` (`e.detail: { order_id, amount_received, utr }`)
 - `youpi:payment:failed` (`e.detail: { order_id, reason }`)
 - `youpi:payment:suspicious` (`e.detail: { order_id }`)
@@ -304,6 +324,7 @@ Driven directly on `window` for reactive UI animations:
 - `youpi:payment:cancelled` (`e.detail: { order_id }`)
 
 #### 4. Authoritative Webhook Security Contract
+
 Frontend browser events are never trusted for order fulfillment or provisioning digital goods. Order completion requires verifying the authoritative server-to-server webhook:
 
 - **Cryptographic Signature:** Generated via HMAC-SHA256 using the merchant's `webhookSecret` and delivered in header `X-Gateway-Signature: sha256=<64_char_hex_hash>`.
@@ -335,7 +356,9 @@ app.post('/api/youpi-webhook', express.raw({ type: 'application/json' }), (req, 
 ---
 
 ### 4.6 5 Standardized Merchant Outcome Pages
+
 To prevent broken 404 links and inconsistent customer experiences, YOUPI PG provides 5 canonical outcome pages served from Port 5000:
+
 1. **`/order-success`:** Confirmed bank credit, displays verified UTR, provisions license/digital product.
 2. **`/order-failed`:** Informs buyer that verification timed out and confirms zero funds were deducted.
 3. **`/order-suspicious`:** Flagged by fraud heuristics; order held for manual merchant audit.
@@ -345,7 +368,9 @@ To prevent broken 404 links and inconsistent customer experiences, YOUPI PG prov
 ---
 
 ### 4.7 White-Label Customization Engine
+
 Configured via Tab 5 of the Merchant Admin dashboard and persisted in `merchants.branding` JSON:
+
 - **Merchant Brand Name & Subtitle**
 - **Custom Logo URL & Favicon**
 - **Custom Accent Color (`--primary`) & Header Gradients**
@@ -391,10 +416,13 @@ data/youpi_pg.sqlite
 ## 7. Verification & Quality Assurance Suite
 
 YOUPI PG enforces zero regression via a unified test runner:
+
 ```bash
 node scripts/test-all.js
 ```
+
 The suite executes **31 curated test suites** across packages, applications, and chaos-concurrency harnesses in under 18 seconds:
+
 - **Common & Contracts:** Types, enums, paise minor units, UPI URIs, crypto builders.
 - **Database & Repositories:** SQLite migrations, foreign keys, transaction rollbacks, auth matrix.
 - **Core Engine:** Queue arbitration, dual timers, attribution normalizer, webhooks.

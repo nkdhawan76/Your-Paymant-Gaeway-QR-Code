@@ -1,21 +1,21 @@
-<div align="center">
-
 # ⚡ Your Paymant Gaeway
 
-### Sovereign • Self-Hosted • Zero-Fee • UPI Payment Gateway
+<div align="center">
+
+## Sovereign • Self-Hosted • Zero-Fee • UPI Payment Gateway
 
 **0% Gateway Fees • Direct-to-Bank Settlement • WhatsApp Pre-Checkout OTP • Bank SMS & Gmail Observers**
 
 <br/>
 
 [![Node.js](https://img.shields.io/badge/Node.js-v20%2B%20LTS-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
-[![Zero Aggregator Fees](https://img.shields.io/badge/Fees-0%25%20Forever-10b981?style=for-the-badge&logo=cashapp&logoColor=white)](#)
-[![Direct Settlement](https://img.shields.io/badge/Settlement-Instant%20P2P%20Bank-3b82f6?style=for-the-badge&logo=buffer&logoColor=white)](#)
-[![WhatsApp Berry Auth](https://img.shields.io/badge/Auth-WhatsApp%20OTP-25d366?style=for-the-badge&logo=whatsapp&logoColor=white)](#)
-[![SQLite WAL](https://img.shields.io/badge/Database-SQLite%20Native%20WAL-003b57?style=for-the-badge&logo=sqlite&logoColor=white)](#)
-[![Native Android Observer](https://img.shields.io/badge/Android-Kotlin%20Observer%20APK-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#)
-[![Regression Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing%20(100%25)-success?style=for-the-badge&logo=vitest&logoColor=white)](#)
-[![White Label Ready](https://img.shields.io/badge/Branding-100%25%20White--Label-f59e0b?style=for-the-badge&logo=target&logoColor=white)](#)
+[![Zero Aggregator Fees](https://img.shields.io/badge/Fees-0%25%20Forever-10b981?style=for-the-badge&logo=cashapp&logoColor=white)](#-the-problem-vs-the-youpi-solution)
+[![Direct Settlement](https://img.shields.io/badge/Settlement-Instant%20P2P%20Bank-3b82f6?style=for-the-badge&logo=buffer&logoColor=white)](#-architecture-at-a-glance)
+[![WhatsApp Berry Auth](https://img.shields.io/badge/Auth-WhatsApp%20OTP-25d366?style=for-the-badge&logo=whatsapp&logoColor=white)](#-whatsapp-pre-checkout-authentication)
+[![SQLite WAL](https://img.shields.io/badge/Database-SQLite%20Native%20WAL-003b57?style=for-the-badge&logo=sqlite&logoColor=white)](#-persistence--zero-config-provisioning)
+[![Native Android Observer](https://img.shields.io/badge/Android-Kotlin%20Observer%20APK-3ddc84?style=for-the-badge&logo=android&logoColor=white)](#-tri-channel-observation-mesh)
+[![Regression Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing%20(100%25)-success?style=for-the-badge&logo=vitest&logoColor=white)](#-verification--quality-assurance-suite)
+[![White Label Ready](https://img.shields.io/badge/Branding-100%25%20White--Label-f59e0b?style=for-the-badge&logo=target&logoColor=white)](#-white-label-branding--customization)
 
 <br/>
 
