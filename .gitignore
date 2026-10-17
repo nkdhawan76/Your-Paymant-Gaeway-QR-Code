@@ -3,6 +3,10 @@ node_modules/
 .pnp
 .pnp.js
 
+# Build Outputs
+dist/
+*.tsbuildinfo
+
 # Environment and Secrets
 .env
 .env.local
@@ -44,7 +48,7 @@ Thumbs.db
 *.jpeg
 *.mp4
 *.webm
-!apps/**
-!packages/**
-!docs/**
+!apps/**/*.png
+!packages/**/*.png
+!docs/**/*.png
 !assets/**

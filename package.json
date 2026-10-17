@@ -29,6 +29,6 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "author": "Antigravity Systems",
-  "license": "Commercial"
+  "author": "Nikil Dhawan",
+  "license": "MIT"
 }

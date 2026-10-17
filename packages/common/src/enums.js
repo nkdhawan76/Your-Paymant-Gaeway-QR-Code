@@ -47,6 +47,7 @@ export const SellingMode = Object.freeze({
 export const ObserverSource = Object.freeze({
   GMAIL: 'GMAIL',
   GOOGLE_MESSAGES: 'GOOGLE_MESSAGES',
+  ANDROID: 'ANDROID',
   ANDROID_OBSERVER: 'ANDROID_OBSERVER',
   SMS_GATEWAY: 'SMS_GATEWAY',
   MANUAL_COUNTER: 'MANUAL_COUNTER'

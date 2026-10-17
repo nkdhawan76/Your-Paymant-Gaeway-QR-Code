@@ -535,7 +535,7 @@ Deep-dive engineering manuals and operational runbooks are available in the [`/d
 
 ## ⚖️ License
 
-Distributed under commercial and sovereign licensing for independent merchant deployments. See [`LICENSE`](LICENSE) for full terms.
+This project is licensed under the MIT License — see the [`LICENSE`](LICENSE) file for details.
 
 <br/>
 
